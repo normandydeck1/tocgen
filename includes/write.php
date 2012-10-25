@@ -60,17 +60,17 @@ function write_toc($path = '')
 
 	/* if no changes */
 
-	if ($contents_old === $contents_new)
+	if ($contents_old == $contents_new)
 	{
-		echo TOCGEN_NO_CHANGES . TOCGEN_COLON . $path . PHP_EOL;
+		echo TOCGEN_NO_CHANGES . TOCGEN_COLON . ' ' . $path . PHP_EOL;
 	}
 
 	/* else update toc */
 
 	else
 	{
+		echo TOCGEN_TOC_UPDATED . TOCGEN_COLON . ' ' . $path . PHP_EOL;
 		file_put_contents($path, $contents_new);
-		echo TOCGEN_TOC_UPDATED . TOCGEN_COLON . $path . PHP_EOL;
 	}
 }
 ?>

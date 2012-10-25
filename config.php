@@ -11,7 +11,9 @@ define(TOCGEN_COMMENT_START, '/*');
 define(TOCGEN_COMMENT_END, '*/');
 define(TOCGEN_COMMENT_SECTION, '@section');
 define(TOCGEN_COMMENT_REGEX, '/\/\*\.*.*?\.*\*\//');
+define(TOCGEN_NO_FILES, 'No files found');
 define(TOCGEN_NO_CHANGES, 'No changes were made');
 define(TOCGEN_TOC_UPDATED, 'Table of contents updated');
-define(TOCGEN_COLON, ': ');
+define(TOCGEN_POINT, '.');
+define(TOCGEN_COLON, ':');
 ?>
