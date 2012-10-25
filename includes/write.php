@@ -28,6 +28,8 @@ function write_toc($path = '')
 		TOCGEN_COMMENT_END
 	);
 
+	/* process matches */
+
 	foreach ($matches as $key => $value)
 	{
 		$value = trim(str_replace($comment_parts, '', $value));
@@ -47,14 +49,14 @@ function write_toc($path = '')
 			$value = TOCGEN_TOC_INDENT . $value;
 		}
 
-		/* collect toc listing */
+		/* collect toc list */
 
-		$list .= TOCGEN_TOC_PREFIX . $value . PHP_EOL;
+		$toc_list .= TOCGEN_TOC_PREFIX . $value . PHP_EOL;
 	}
 
 	/* new contents */
 
-	$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . PHP_EOL . $list . TOCGEN_TOC_END . PHP_EOL . PHP_EOL . $contents;
+	$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . PHP_EOL . $toc_list . TOCGEN_TOC_END . PHP_EOL . PHP_EOL . $contents;
 
 	/* if no changes */
 
