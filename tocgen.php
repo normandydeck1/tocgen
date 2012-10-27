@@ -47,7 +47,7 @@ if ($argv[1])
 
 		else
 		{
-			echo console(TOCGEN_NO_FILES . TOCGEN_POINT);
+			echo console(TOCGEN_NO_FILES . TOCGEN_POINT, 'error') . PHP_EOL;
 		}
 	}
 
@@ -55,7 +55,7 @@ if ($argv[1])
 
 	else
 	{
-		echo console(TOCGEN_NO_FILES . TOCGEN_POINT);
+		echo console(TOCGEN_NO_FILES . TOCGEN_POINT, 'error') . PHP_EOL;
 	}
 }
 ?>

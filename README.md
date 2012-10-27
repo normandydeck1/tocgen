@@ -13,7 +13,7 @@ Setup your table of contents block inside config.php.
 Usage
 -----
 
-Run <code>php tocgen.php "path to file or directory"</code> from console.
+Run <code>php tocgen.php "file or directory"</code> from console.
 
 
 Example
@@ -51,7 +51,7 @@ Your source file:
 }
 </pre>
 
-Your file result:
+Your result file:
 
 <pre>
 /**

@@ -6,7 +6,7 @@ function console($message = '', $mode = '')
 {
 	$operating_system = strtolower(php_uname('s'));
 
-	/* if linux */
+	/* if linux present */
 
 	if ($operating_system == 'linux')
 	{
@@ -23,6 +23,13 @@ function console($message = '', $mode = '')
 				$output .= '[1;31m';
 			}
 
+			/* mode warning */
+
+			else if ($mode == 'warning')
+			{
+				$output .= '[1;33m';
+			}
+
 			/* mode success */
 
 			else if ($mode === 'success')
@@ -30,7 +37,6 @@ function console($message = '', $mode = '')
 				$output .= '[1;32m';
 			}
 			$output .= $input . chr(27) . '[0m';
-
 		}
 	}
 

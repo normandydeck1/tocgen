@@ -60,23 +60,33 @@ function write_toc($path = '')
 		}
 	}
 
-	/* new contents */
+	/* if toc list */
 
-	$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . TOCGEN_EOL . $toc_list . TOCGEN_TOC_END . TOCGEN_EOL . TOCGEN_EOL . $contents;
-
-	/* if no changes */
-
-	if ($contents_old == $contents_new)
+	if ($toc_list)
 	{
-		echo console(TOCGEN_NO_CHANGES . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
+		$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . TOCGEN_EOL . $toc_list . TOCGEN_TOC_END . TOCGEN_EOL . TOCGEN_EOL . $contents;
+
+		/* if no changes */
+
+		if ($contents_old == $contents_new)
+		{
+			echo console(TOCGEN_NO_CHANGES . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
+		}
+
+		/* else update toc */
+
+		else
+		{
+			echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
+			file_put_contents($path, $contents_new);
+		}
 	}
 
-	/* else update toc */
+	/* else handle error */
 
 	else
 	{
-		echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
-		file_put_contents($path, $contents_new);
+		echo console(TOCGEN_NO_SECTIONS . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
 	}
 }
 ?>
