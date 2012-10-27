@@ -4,6 +4,7 @@ error_reporting(0);
 /* include core files */
 
 include_once('config.php');
+include_once('includes/console.php');
 include_once('includes/filesystem.php');
 include_once('includes/write.php');
 
@@ -11,34 +12,50 @@ include_once('includes/write.php');
 
 if ($argv[1])
 {
-	$directory = $argv[1];
+	$path = $argv[1];
 
-	/* read target directory */
+	/* is file */
 
-	if ($directory)
+	if (is_file($path))
 	{
-		$target_directory = read_directory($directory, array(
+		write_toc($path);
+	}
+
+	/* is directory */
+
+	else if (is_dir($path))
+	{
+		/* read directory files */
+
+		$target_directory = read_directory($path, array(
 			'.git',
 			'.loader',
 			'.svn'
 		));
+
+		/* if directory has files */
+
+		if (count($target_directory))
+		{
+			foreach($target_directory as $filename)
+			{
+				write_toc($path . '/' . $filename);
+			}
+		}
+
+		/* else handle error */
+
+		else
+		{
+			echo console(TOCGEN_NO_FILES . TOCGEN_POINT);
+		}
 	}
-}
 
-/* write toc */
+	/* else handle error */
 
-if (count($target_directory))
-{
-	foreach($target_directory as $filename)
+	else
 	{
-		write_toc($directory . '/' . $filename);
+		echo console(TOCGEN_NO_FILES . TOCGEN_POINT);
 	}
-}
-
-/* else handle error */
-
-else
-{
-	echo TOCGEN_NO_FILES . TOCGEN_POINT;
 }
 ?>

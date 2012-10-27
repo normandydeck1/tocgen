@@ -1,7 +1,7 @@
 TOC Generator
 =============
 
-> Generate table of contents from CSS, JS and PHP files.
+> Generate table of contents from CSS and JS files.
 
 
 Config
@@ -11,9 +11,9 @@ Setup your table of contents block inside config.php.
 
 
 Usage
-------
+-----
 
-Run <code>php tocgen.php "path to files"</code> from console.
+Run <code>php tocgen.php "path to file or directory"</code> from console.
 
 
 Example
@@ -29,9 +29,9 @@ Your source file:
 	margin: auto;
 }
 
-/* General comment */
+/* @section 1.1 Sub section */
 
-.first > div
+.first > .sub
 {
 	padding: 2em;
 }
@@ -55,10 +55,10 @@ Your file result:
 
 <pre>
 /**
- * @tableOfContents
+ * @tableofcontents
  *
  * 1. First section
- *    General comment
+ *    1.1 Sub section
  * 2. Second section
  * 3. Third section
 **/
@@ -70,9 +70,9 @@ Your file result:
 	margin: auto;
 }
 
-/* General comment */
+/* @section 1.1 Sub section */
 
-.first > div
+.first > .sub
 {
 	padding: 2em;
 }

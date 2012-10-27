@@ -40,36 +40,42 @@ function write_toc($path = '')
 		if ($position_section > -1)
 		{
 			$value = trim(str_replace(TOCGEN_COMMENT_SECTION, '', $value));
+			$section_explode = explode('.', $value);
+			if ($section_explode[0])
+			{
+				$section_sub = $section_explode[0];
+			}
+
+			/* if sub section*/
+
+			if ($section_sub_old == $section_sub)
+			{
+				$value = TOCGEN_TOC_INDENT . $value;
+			}
+			$section_sub_old = $section_sub;
+
+			/* collect toc list */
+
+			$toc_list .= TOCGEN_TOC_PREFIX . $value . TOCGEN_EOL;
 		}
-
-		/* else indent */
-
-		else
-		{
-			$value = TOCGEN_TOC_INDENT . $value;
-		}
-
-		/* collect toc list */
-
-		$toc_list .= TOCGEN_TOC_PREFIX . $value . PHP_EOL;
 	}
 
 	/* new contents */
 
-	$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . PHP_EOL . $toc_list . TOCGEN_TOC_END . PHP_EOL . PHP_EOL . $contents;
+	$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . TOCGEN_EOL . $toc_list . TOCGEN_TOC_END . TOCGEN_EOL . TOCGEN_EOL . $contents;
 
 	/* if no changes */
 
 	if ($contents_old == $contents_new)
 	{
-		echo TOCGEN_NO_CHANGES . TOCGEN_COLON . ' ' . $path . PHP_EOL;
+		echo console(TOCGEN_NO_CHANGES . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
 	}
 
 	/* else update toc */
 
 	else
 	{
-		echo TOCGEN_TOC_UPDATED . TOCGEN_COLON . ' ' . $path . PHP_EOL;
+		echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
 		file_put_contents($path, $contents_new);
 	}
 }

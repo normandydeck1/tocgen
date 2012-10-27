@@ -2,9 +2,10 @@
 
 /* config tocgen */
 
+define(TOCGEN_EOL, "\r\n");
 define(TOCGEN_TOC_START, '/**');
 define(TOCGEN_TOC_END, '**/');
-define(TOCGEN_TOC_HEAD, PHP_EOL . ' * @tableOfContents' . PHP_EOL . ' *');
+define(TOCGEN_TOC_HEAD, TOCGEN_EOL . ' * @tableofcontents' . TOCGEN_EOL . ' *');
 define(TOCGEN_TOC_PREFIX, ' * ');
 define(TOCGEN_TOC_INDENT, '   ');
 define(TOCGEN_COMMENT_START, '/*');
