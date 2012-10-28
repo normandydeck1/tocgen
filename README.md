@@ -61,7 +61,7 @@ Your result file:
  *    1.1 Sub section
  * 2. Second section
  * 3. Third section
-**/
+ */
 
 /* @section 1. First section */
 

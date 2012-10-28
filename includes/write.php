@@ -7,13 +7,20 @@ function write_toc($path = '')
 	/* get contents */
 
 	$contents = $contents_old = file_get_contents($path);
-	$contents_explode = explode(TOCGEN_TOC_END, $contents);
+	$contents_explode = explode(TOCGEN_TOC_END, $contents, 2);
 
 	/* remove present toc block */
 
 	if ($contents_explode[1])
 	{
-		$contents = trim($contents_explode[1]);
+		$position_toc_check = strpos($contents_explode[0], TOCGEN_TOC_CHECK);
+
+		/* if toc check */
+
+		if ($position_toc_check > -1)
+		{
+			$contents = trim($contents_explode[1]);
+		}
 	}
 
 	/* get all matches */
@@ -35,7 +42,7 @@ function write_toc($path = '')
 		$value = trim(str_replace($comment_parts, '', $value));
 		$position_section = strpos($value, TOCGEN_COMMENT_SECTION);
 
-		/* replace if section */
+		/* if section */
 
 		if ($position_section > -1)
 		{
