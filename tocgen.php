@@ -3,52 +3,36 @@ error_reporting(0);
 
 /* include core files */
 
-include_once('config.php');
-include_once('includes/console.php');
-include_once('includes/filesystem.php');
-include_once('includes/write.php');
+$tocgen_directory = dirname(__FILE__);
+include_once($tocgen_directory . '/config.php');
+include_once($tocgen_directory . '/includes/console.php');
+include_once($tocgen_directory . '/includes/filesystem.php');
+include_once($tocgen_directory . '/includes/write.php');
 
 /* get argument */
 
 if ($argv[1])
 {
-	$path = $argv[1];
+	$path = realpath($argv[1]);
+	$extention = pathinfo($path, PATHINFO_EXTENSION);
 
-	/* is file */
+	/* if file with correct extention */
 
 	if (is_file($path))
 	{
-		write_toc($path);
+		if ($extention == 'css' || $extention == 'js')
+		{
+			write_toc($path);
+		}
 	}
 
-	/* is directory */
+	/* else if directory */
 
 	else if (is_dir($path))
 	{
-		/* read directory files */
+		/* walk directory */
 
-		$target_directory = read_directory($path, array(
-			'.git',
-			'.loader',
-			'.svn'
-		));
-
-		/* if directory has files */
-
-		if (count($target_directory))
-		{
-			foreach($target_directory as $filename)
-			{
-				write_toc($path . '/' . $filename);
-			}
-		}
-
-		/* else handle error */
-
-		else
-		{
-			echo console(TOCGEN_NO_FILES . TOCGEN_POINT, 'error') . PHP_EOL;
-		}
+		walk_directory($path, 'write_toc');
 	}
 
 	/* else handle error */
