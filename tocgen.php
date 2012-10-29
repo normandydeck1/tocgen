@@ -18,14 +18,14 @@ if ($argv[1])
 
 	/* recursive option */
 
-	if ($argv[2] == '--recursive' || $argv[3] == '--recursive')
+	if ($argv[2] == '--recursive' || $argv[2] == '-r' || $argv[3] == '--recursive' || $argv[3] == '-r')
 	{
 		$recursive = 1;
 	}
 
 	/* quite option */
 
-	if ($argv[2] == '--quite' || $argv[3] == '--quite')
+	if ($argv[2] == '--quite' || $argv[2] == '-q' || $argv[3] == '--quite' || $argv[3] == '-q')
 	{
 		define('TOCGEN_QUITE', 1);
 	}

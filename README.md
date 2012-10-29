@@ -18,14 +18,14 @@ Run <code>php tocgen.php [path] [options]</code> from console.
 
 **Path:**
 
-Single file or direcotry.
+Single file or directory.
 
 
 **Options:**
 
-<code>--recursive</code> - Walk target directory recursively
+<code>--recursive</code>, <code>-r</code> - Walk target directory recursively
 
-<code>--quite</code> - Print nothing
+<code>--quite</code>, <code>-q</code>  - Print nothing
 
 
 Grunt
