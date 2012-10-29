@@ -77,23 +77,31 @@ function write_toc($path = '')
 
 		if ($contents_old == $contents_new)
 		{
-			echo console(TOCGEN_NO_CHANGES . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
+			/* handle warning */
+
+			if (TOCGEN_QUITE == 0)
+			{
+				echo console(TOCGEN_NO_CHANGES . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
+			}
 		}
 
 		/* else update toc */
 
 		else
 		{
-			echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
+			if (TOCGEN_QUITE == 0)
+			{
+				echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
+			}
 			file_put_contents($path, $contents_new);
 		}
 	}
 
 	/* else handle error */
 
-	else
+	else if (TOCGEN_QUITE == 0)
 	{
-		echo console(TOCGEN_NO_SECTIONS . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
+		echo console(TOCGEN_NO_SECTIONS . TOCGEN_COLON, 'error') . ' ' . $path . PHP_EOL;
 	}
 }
 ?>

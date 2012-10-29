@@ -30,9 +30,20 @@ function read_directory($input = '', $ignore = '')
 
 /* walk directory */
 
-function walk_directory($path = '', $function = '')
+function walk_directory($path = '', $function = '', $recursive = '')
 {
-	if ($path)
+	/* if file */
+
+	if (is_file($path))
+	{
+		$directory = array(
+			$path
+		);
+	}
+
+	/* else if directory */
+
+	else if (is_dir($path))
 	{
 		/* read directory */
 
@@ -42,27 +53,40 @@ function walk_directory($path = '', $function = '')
 		));
 	}
 
-	/* if directory */
+	/* else handle error */
 
-	if ($directory)
+	else if (TOCGEN_QUITE == 0)
+	{
+		echo console(TOCGEN_NO_FILES . TOCGEN_POINT, 'error') . PHP_EOL;
+	}
+
+	/* if directory count */
+
+	if (count($directory) > 1)
 	{
 		foreach($directory as $filename)
 		{
 			$path_sub = $path . '/' . $filename;
-			$extention = pathinfo($path_sub, PATHINFO_EXTENSION);
 
-			/* if file with correct extention */
+			/* if file */
 
-			if (is_file($path_sub) && ($extention == 'css' || $extention == 'js'))
+			if (is_file($path_sub))
 			{
-				call_user_func($function, $path_sub);
+				$extension = pathinfo($path_sub, PATHINFO_EXTENSION);
+
+				/* if correct extension */
+
+				if ($extension == 'css' || $extension == 'js')
+				{
+					call_user_func($function, $path_sub);
+				}
 			}
 
 			/* else if directory */
 
-			else if (is_dir($path_sub))
+			else if (is_dir($path_sub) && $recursive)
 			{
-				walk_directory($path_sub, $function);
+				walk_directory($path_sub, $function, $recursive);
 			}
 		}
 	}

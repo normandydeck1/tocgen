@@ -14,32 +14,28 @@ include_once($tocgen_directory . '/includes/write.php');
 if ($argv[1])
 {
 	$path = realpath($argv[1]);
-	$extention = pathinfo($path, PATHINFO_EXTENSION);
+	$recursive = 0;
 
-	/* if file with correct extention */
+	/* recursive option */
 
-	if (is_file($path))
+	if ($argv[2] == '--recursive' || $argv[3] == '--recursive')
 	{
-		if ($extention == 'css' || $extention == 'js')
-		{
-			write_toc($path);
-		}
+		$recursive = 1;
 	}
 
-	/* else if directory */
+	/* quite option */
 
-	else if (is_dir($path))
+	if ($argv[2] == '--quite' || $argv[3] == '--quite')
 	{
-		/* walk directory */
-
-		walk_directory($path, 'write_toc');
+		define('TOCGEN_QUITE', 1);
 	}
-
-	/* else handle error */
-
 	else
 	{
-		echo console(TOCGEN_NO_FILES . TOCGEN_POINT, 'error') . PHP_EOL;
+		define('TOCGEN_QUITE', 0);
 	}
+
+	/* walk directory */
+
+	walk_directory($path, 'write_toc', $recursive);
 }
 ?>

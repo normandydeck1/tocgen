@@ -13,13 +13,25 @@ Setup your table of contents block inside config.php.
 Usage
 -----
 
-Run <code>php tocgen.php "file or directory"</code> from console.
+Run <code>php tocgen.php [path] [options]</code> from console.
+
+
+**Path:**
+
+Single file or direcotry.
+
+
+**Options:**
+
+<code>--recursive</code> - Walk target directory recursively
+
+<code>--quite</code> - Print nothing
 
 
 Grunt
 -----
 
-How to implement togcen into [grunt.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention.
+How to implement togcen into [grunt.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
 
 <pre>
 
@@ -55,7 +67,7 @@ grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
 Example
 -------
 
-Source file:
+Input file:
 
 <pre>
 /* @section 1. First section */
@@ -87,7 +99,7 @@ Source file:
 }
 </pre>
 
-Result file:
+Output file:
 
 <pre>
 /**
