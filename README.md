@@ -16,10 +16,46 @@ Usage
 Run <code>php tocgen.php "file or directory"</code> from console.
 
 
+Grunt
+-----
+
+How to implement togcen into [grunt.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention.
+
+<pre>
+
+/* config grunt */
+
+grunt.initConfig(
+{
+	shell:
+	{
+		tocCSS:
+		{
+			command: 'php ../tocgen.php css',
+			stdout: true
+		},
+		tocJS:
+		{
+			command: 'php ../tocgen.php js',
+			stdout: true
+		}
+	}
+}
+
+/* load tasks */
+
+grunt.loadNpmTasks('grunt-shell');
+
+/* register tasks */
+
+grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
+</pre>
+
+
 Example
 -------
 
-Your source file:
+Source file:
 
 <pre>
 /* @section 1. First section */
@@ -51,7 +87,7 @@ Your source file:
 }
 </pre>
 
-Your result file:
+Result file:
 
 <pre>
 /**
