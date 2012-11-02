@@ -62,7 +62,7 @@ function walk_directory($path = '', $function = '', $recursive = '')
 
 	/* if directory count */
 
-	if (count($directory) > 1)
+	if (count($directory))
 	{
 		foreach($directory as $filename)
 		{
