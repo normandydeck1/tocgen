@@ -36,7 +36,7 @@ function console($message = '', $mode = '')
 			{
 				$output .= '[1;32m';
 			}
-			$output .= $input . chr(27) . '[0m';
+			$output .= $message . chr(27) . '[0m';
 		}
 	}
 
