@@ -1,6 +1,12 @@
 <?php
 
-/* read directory */
+/**
+ * read directory
+ *
+ * @param string $input
+ * @param string|array $ignore
+ * @return array
+ */
 
 function read_directory($input = '', $ignore = '')
 {
@@ -28,7 +34,13 @@ function read_directory($input = '', $ignore = '')
 	return $output;
 }
 
-/* walk directory */
+/**
+ * walk directory
+ *
+ * @param string $path
+ * @param string $function
+ * @param string $recursive
+ */
 
 function walk_directory($path = '', $function = '', $recursive = '')
 {

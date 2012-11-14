@@ -1,6 +1,10 @@
 <?php
 
-/* write toc */
+/**
+ * write toc
+ *
+ * @param string $path
+ */
 
 function write_toc($path = '')
 {

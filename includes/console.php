@@ -1,6 +1,12 @@
 <?php
 
-/* console */
+/**
+ * console
+ *
+ * @param string $message
+ * @param string $mode
+ * @return string
+ */
 
 function console($message = '', $mode = '')
 {
