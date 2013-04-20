@@ -13,7 +13,7 @@ define(TOCGEN_TOC_INDENT2, '    ');
 define(TOCGEN_COMMENT_START, '/*');
 define(TOCGEN_COMMENT_END, '*/');
 define(TOCGEN_COMMENT_SECTION, '@section');
-define(TOCGEN_COMMENT_REGEX, '/\/\*([\s\S]*?)\n|\*\//');
+define(TOCGEN_COMMENT_REGEX, '/\/\*([\s\S]*?)\*\//');
 define(TOCGEN_NO_FILES, 'File or directory not found');
 define(TOCGEN_NO_SECTIONS, TOCGEN_COMMENT_SECTION . ' not found');
 define(TOCGEN_NO_CHANGES, 'No changes were made');
