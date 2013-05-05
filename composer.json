@@ -1,0 +1,7 @@
+{
+	"name": "tocgen",
+	"require":
+	{
+		"php": "5.3.18"
+	}
+}
