@@ -28,19 +28,19 @@ Load config from file.
 
 **Options:**
 
-<code>--force</code>, <code>-f</code> - Force TOC generation
+<code>--force</code>, <code>-f</code> - Force table of contents generation
 
 <code>--recursive</code>, <code>-r</code> - Walk target directory recursively
 
 <code>--quite</code>, <code>-q</code> - Print nothing
 
 
-Example
--------
+Usage
+-----
 
-<code>php php vendor/tocgen/tocgen.php css .tocgen -r</code>
+<code>php vendor/tocgen/tocgen.php css .tocgen -r</code>
 
-<code>php php vendor/tocgen/tocgen.php js .tocgen -r</code>
+<code>php vendor/tocgen/tocgen.php js .tocgen -r</code>
 
 
 Grunt
@@ -79,8 +79,41 @@ grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
 </pre>
 
 
-Result
-------
+Composer
+--------
+
+How to register tocgen inside composer.json:
+
+<pre>
+{
+	"name": "Your project",
+	"repositories":
+	[
+		{
+			"type": "package",
+			"package":
+			{
+				"name": "tocgen",
+				"version": "2.0",
+				"source":
+				{
+					"url": "https://github.com/redaxmedia/tocgen.git",
+					"type": "git",
+					"reference": "2.0"
+				}
+			}
+		}
+	],
+	"require":
+	{
+		"tocgen": "2.0"
+	}
+}
+</pre>
+
+
+Example
+-------
 
 Input file:
 
