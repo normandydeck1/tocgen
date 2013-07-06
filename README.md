@@ -1,7 +1,7 @@
 Tocgen
 ======
 
-> Generates table of contents from CSS and JS files.
+> Generate table of contents from multiple CSS and JS files.
 
 
 Usage
