@@ -105,7 +105,7 @@ function write_toc($path = '')
 			{
 				echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
 			}
-			$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . $toc_list_new . TOCGEN_TOC_FOOT . TOCGEN_TOC_END . TOCGEN_TOC_SPACE . $contents;
+			$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . $toc_list_new . TOCGEN_TOC_FOOT . TOCGEN_TOC_END . $contents;
 			file_put_contents($path, $contents_new);
 		}
 	}
