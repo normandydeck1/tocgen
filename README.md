@@ -7,13 +7,13 @@ TOC Generator
 Config
 ------
 
-Setup your table of contents block inside config.php.
+Setup your table of contents block inside the .tocgen file.
 
 
 Usage
 -----
 
-Run <code>php tocgen.php [path] [options]</code> from console.
+Run <code>php tocgen.php [path] [config] [options]</code> from console.
 
 
 **Path:**
@@ -21,11 +21,24 @@ Run <code>php tocgen.php [path] [options]</code> from console.
 Single file or directory.
 
 
+**Config:**
+
+Load another config.
+
+
 **Options:**
 
 <code>--recursive</code>, <code>-r</code> - Walk target directory recursively
 
 <code>--quite</code>, <code>-q</code>  - Print nothing
+
+
+Example
+-------
+
+<code>php php vendor/tocgen/tocgen.php css .tocgen -r</code>
+
+<code>php php vendor/tocgen/tocgen.php js .tocgen -r</code>
 
 
 Grunt
@@ -43,12 +56,12 @@ grunt.initConfig(
 	{
 		tocCSS:
 		{
-			command: 'php ../tocgen.php css',
+			command: 'php vendor/tocgen/tocgen.php css',
 			stdout: true
 		},
 		tocJS:
 		{
-			command: 'php ../tocgen.php js',
+			command: 'php vendor/tocgen/tocgen.php js',
 			stdout: true
 		}
 	}
@@ -64,8 +77,8 @@ grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
 </pre>
 
 
-Example
--------
+Result
+------
 
 Input file:
 

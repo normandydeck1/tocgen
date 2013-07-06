@@ -4,7 +4,6 @@ error_reporting(0);
 /* include core files */
 
 $tocgen_directory = dirname(__FILE__);
-include_once($tocgen_directory . '/config.php');
 include_once($tocgen_directory . '/includes/console.php');
 include_once($tocgen_directory . '/includes/filesystem.php');
 include_once($tocgen_directory . '/includes/write.php');
@@ -16,16 +15,27 @@ if ($argv[1])
 	$path = realpath($argv[1]);
 	$recursive = 0;
 
+	/* include config */
+
+	if (file_exists($argv[2]))
+	{
+		include_once($argv[2]);
+	}
+	else
+	{
+		include_once($tocgen_directory . '/.tocgen');
+	}
+
 	/* recursive option */
 
-	if ($argv[2] == '--recursive' || $argv[2] == '-r' || $argv[3] == '--recursive' || $argv[3] == '-r')
+	if (in_array('--recursive', $argv) || in_array('-r', $argv))
 	{
 		$recursive = 1;
 	}
 
 	/* quite option */
 
-	if ($argv[2] == '--quite' || $argv[2] == '-q' || $argv[3] == '--quite' || $argv[3] == '-q')
+	if (in_array('--quite', $argv) || in_array('-q', $argv))
 	{
 		define('TOCGEN_QUITE', 1);
 	}

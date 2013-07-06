@@ -69,7 +69,7 @@ function walk_directory($path = '', $function = '', $recursive = '')
 
 	else if (TOCGEN_QUITE == 0)
 	{
-		echo console(TOCGEN_NO_FILES . TOCGEN_POINT, 'error') . PHP_EOL;
+		echo console(TOCGEN_NO_TARGET . TOCGEN_POINT, 'error') . PHP_EOL;
 	}
 
 	/* if directory count */

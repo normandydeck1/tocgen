@@ -76,7 +76,7 @@ function write_toc($path = '')
 
 	if ($toc_list)
 	{
-		$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . TOCGEN_EOL . $toc_list . TOCGEN_TOC_END . TOCGEN_EOL . TOCGEN_EOL . $contents;
+		$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . $toc_list . TOCGEN_TOC_FOOT . TOCGEN_TOC_END . TOCGEN_TOC_SPACE . $contents;
 
 		/* if no changes */
 
@@ -106,7 +106,7 @@ function write_toc($path = '')
 
 	else if (TOCGEN_QUITE == 0)
 	{
-		echo console(TOCGEN_NO_SECTIONS . TOCGEN_COLON, 'error') . ' ' . $path . PHP_EOL;
+		echo console(TOCGEN_NO_SECTION . TOCGEN_COLON, 'error') . ' ' . $path . PHP_EOL;
 	}
 }
 ?>
