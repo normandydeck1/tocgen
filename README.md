@@ -4,8 +4,8 @@ Tocgen
 > Generates table of contents from CSS and JS files.
 
 
-Syntax
-------
+Usage
+-----
 
 Run <code>php tocgen.php [path] [config] [options]</code> from console.
 
@@ -27,14 +27,6 @@ Load config from file.
 <code>--recursive</code>, <code>-r</code> - Walk target directory recursively
 
 <code>--quite</code>, <code>-q</code> - Print nothing
-
-
-Usage
------
-
-<code>php vendor/tocgen/tocgen.php css .tocgen -r</code>
-
-<code>php vendor/tocgen/tocgen.php js .tocgen -r</code>
 
 
 Config
@@ -104,7 +96,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 Grunt
 -----
 
-How to implement togcen into [gruntfile.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
+How to implement Tocgen into [gruntfile.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
 
 <pre>
 
