@@ -1,11 +1,17 @@
 <?php
 
 /**
- * read directory
+ * Read Directory
  *
- * @param string $input
- * @param string|array $ignore
- * @return array
+ * @since 1.0
+ *
+ * @category Filesystem
+ * @package Tocgen
+ * @author Henry Ruhs
+ *
+ * @param $input string
+ * @param $ignore string|array
+ * @return $output array
  */
 
 function read_directory($input = '', $ignore = '')
@@ -35,11 +41,17 @@ function read_directory($input = '', $ignore = '')
 }
 
 /**
- * walk directory
+ * Walk Directory
  *
- * @param string $path
- * @param string $function
- * @param string $recursive
+ * @since 1.0
+ *
+ * @category Filesystem
+ * @package Tocgen
+ * @author Henry Ruhs
+ *
+ * @param $path string
+ * @param $function string
+ * @param $recursive boolean
  */
 
 function walk_directory($path = '', $function = '', $recursive = '')

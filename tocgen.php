@@ -8,7 +8,7 @@ include_once($tocgen_directory . '/includes/console.php');
 include_once($tocgen_directory . '/includes/filesystem.php');
 include_once($tocgen_directory . '/includes/write.php');
 
-/* get argument */
+/* handle argument */
 
 if ($argv[1])
 {

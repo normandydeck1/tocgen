@@ -1,9 +1,15 @@
 <?php
 
 /**
- * write toc
+ * Write Toc
  *
- * @param string $path
+ * @since 2.0
+ *
+ * @category Write
+ * @package Tocgen
+ * @author Henry Ruhs
+ *
+ * @param $path string
  */
 
 function write_toc($path = '')
@@ -19,11 +25,11 @@ function write_toc($path = '')
 	{
 		$position_toc_check = strpos($contents_explode[0], TOCGEN_TOC_CHECK);
 
-		/* if toc check */
+		/* if toc check passed */
 
 		if ($position_toc_check > -1)
 		{
-			/* old toc list */
+			/* explode old toc list */
 
 			$toc_list_old = $contents_explode[0];
 			$toc_list_old = explode(TOCGEN_TOC_DELIMITER, $toc_list_old, 2);

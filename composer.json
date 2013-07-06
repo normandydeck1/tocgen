@@ -1,5 +1,5 @@
 {
-	"name": "tocgen",
+	"name": "Tocgen",
 	"require":
 	{
 		"php": ">5.3.2"
