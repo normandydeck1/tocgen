@@ -68,6 +68,39 @@ define(TOCGEN_COLON, ':');
 </pre>
 
 
+Composer
+--------
+
+How to register Tocgen inside [composer.json](https://github.com/composer/composer):
+
+<pre>
+{
+	"name": "Your project",
+	"repositories":
+	[
+		{
+			"type": "package",
+			"package":
+			{
+				"name": "tocgen",
+				"version": "2.0",
+				"source":
+				{
+					"url": "https://github.com/redaxmedia/tocgen.git",
+					"type": "git",
+					"reference": "2.0"
+				}
+			}
+		}
+	],
+	"require":
+	{
+		"tocgen": "2.0"
+	}
+}
+</pre>
+
+
 Grunt
 -----
 
@@ -101,39 +134,6 @@ grunt.loadNpmTasks('grunt-shell');
 /* register tasks */
 
 grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
-</pre>
-
-
-Composer
---------
-
-How to register Tocgen inside [composer.json](https://github.com/composer/composer):
-
-<pre>
-{
-	"name": "Your project",
-	"repositories":
-	[
-		{
-			"type": "package",
-			"package":
-			{
-				"name": "tocgen",
-				"version": "2.0",
-				"source":
-				{
-					"url": "https://github.com/redaxmedia/tocgen.git",
-					"type": "git",
-					"reference": "2.0"
-				}
-			}
-		}
-	],
-	"require":
-	{
-		"tocgen": "2.0"
-	}
-}
 </pre>
 
 
