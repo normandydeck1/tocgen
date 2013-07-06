@@ -43,9 +43,13 @@ Config
 Customize your table of contents block inside the .tocgen file.
 
 
-**[Redaxscript](https://github.com/redaxmedia/redaxscript) .tocgen**
+**Checkout [Redaxscript](https://github.com/redaxmedia/redaxscript)'s .tocgen**
 
 <pre>
+<?php
+
+/* config tocgen */
+
 define(TOCGEN_EOL, "\r\n");
 define(TOCGEN_TOC_CHECK, '@tableofcontents');
 define(TOCGEN_TOC_START, '/**');
@@ -66,6 +70,7 @@ define(TOCGEN_NO_CHANGES, 'No changes were made');
 define(TOCGEN_TOC_UPDATED, 'Table of contents updated');
 define(TOCGEN_POINT, '.');
 define(TOCGEN_COLON, ':');
+?>
 </pre>
 
 
