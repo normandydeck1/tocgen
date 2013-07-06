@@ -26,6 +26,17 @@ if ($argv[1])
 		include_once($tocgen_directory . '/.tocgen');
 	}
 
+	/* force option */
+
+	if (in_array('--force', $argv) || in_array('-f', $argv))
+	{
+		define('TOCGEN_FORCE', 1);
+	}
+	else
+	{
+		define('TOCGEN_FORCE', 0);
+	}
+
 	/* recursive option */
 
 	if (in_array('--recursive', $argv) || in_array('-r', $argv))

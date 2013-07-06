@@ -23,14 +23,16 @@ Single file or directory.
 
 **Config:**
 
-Load another config.
+Load config from file.
 
 
 **Options:**
 
+<code>--force</code>, <code>-f</code> - Force TOC generation
+
 <code>--recursive</code>, <code>-r</code> - Walk target directory recursively
 
-<code>--quite</code>, <code>-q</code>  - Print nothing
+<code>--quite</code>, <code>-q</code> - Print nothing
 
 
 Example
