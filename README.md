@@ -4,14 +4,8 @@ TOC Generator
 > Generate table of contents from CSS and JS files.
 
 
-Config
+Syntax
 ------
-
-Setup your table of contents block inside the .tocgen file.
-
-
-Usage
------
 
 Run <code>php tocgen.php [path] [config] [options]</code> from console.
 
@@ -43,10 +37,21 @@ Usage
 <code>php vendor/tocgen/tocgen.php js .tocgen -r</code>
 
 
+Config
+------
+
+Customize your table of contents block inside the .tocgen file.
+
+
+**Foot**
+
+<pre>define(TOCGEN_TOC_FOOT, TOCGEN_TOC_DELIMITER . ' * @since 1.0' . TOCGEN_EOL . ' *' . TOCGEN_EOL . ' * @package Your project' . TOCGEN_EOL . ' * @author Your name' . TOCGEN_EOL);</pre>
+
+
 Grunt
 -----
 
-How to implement togcen into [grunt.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
+How to implement togcen into [gruntfile.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
 
 <pre>
 
@@ -82,7 +87,7 @@ grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
 Composer
 --------
 
-How to register tocgen inside composer.json:
+How to register tocgen inside [composer.json](https://github.com/composer/composer):
 
 <pre>
 {
