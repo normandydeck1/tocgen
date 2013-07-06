@@ -1,7 +1,7 @@
-TOC Generator
-=============
+Tocgen
+======
 
-> Generate table of contents from CSS and JS files.
+> Generates table of contents from CSS and JS files.
 
 
 Syntax
@@ -107,7 +107,7 @@ grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
 Composer
 --------
 
-How to register tocgen inside [composer.json](https://github.com/composer/composer):
+How to register Tocgen inside [composer.json](https://github.com/composer/composer):
 
 <pre>
 {
