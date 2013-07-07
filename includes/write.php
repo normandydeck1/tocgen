@@ -29,12 +29,10 @@ function write_toc($path = '')
 
 		if ($position_toc_check > -1)
 		{
-			/* explode old toc list */
+			/* store old toc list */
 
-			$toc_list_old = $contents_explode[0];
-			$toc_list_old = explode(TOCGEN_TOC_DELIMITER, $toc_list_old, 2);
-			$toc_list_old = explode(TOCGEN_TOC_DELIMITER, $toc_list_old[1], 2);
-			$toc_list_old = $toc_list_old[0];
+			$toc_list_old = explode(TOCGEN_TOC_DELIMITER, $contents_explode[0], 3);
+			$toc_list_old = $toc_list_old[1];
 
 			/* store contents */
 
@@ -51,7 +49,8 @@ function write_toc($path = '')
 
 	$comment_parts = array(
 		TOCGEN_COMMENT_START,
-		TOCGEN_COMMENT_END
+		TOCGEN_COMMENT_END,
+		TOCGEN_COMMENT_PREFIX
 	);
 
 	/* process matches */
@@ -69,17 +68,17 @@ function write_toc($path = '')
 			$section_explode = explode('.', $value);
 			if ($section_explode[0])
 			{
-				$section_sub = $section_explode[0];
+				$section_sub_new = $section_explode[0];
 			}
 
-			/* if sub section*/
+			/* if sub section */
 
-			if ($section_sub_old == $section_sub)
+			if ($section_sub_old == $section_sub_new)
 			{
 				$section_length = strlen($section_sub);
 				$value = constant(TOCGEN_TOC_INDENT . $section_length) . $value;
 			}
-			$section_sub_old = $section_sub;
+			$section_sub_old = $section_sub_new;
 
 			/* collect new toc list */
 

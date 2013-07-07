@@ -17,7 +17,7 @@ Single file or directory.
 
 **Config:**
 
-Load config from file.
+Load config from .tocgen file.
 
 
 **Options:**
