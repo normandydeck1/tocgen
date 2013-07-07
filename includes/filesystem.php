@@ -3,7 +3,7 @@
 /**
  * Read Directory
  *
- * @since 1.0
+ * @since 2.1
  *
  * @category Filesystem
  * @package Tocgen
@@ -63,6 +63,7 @@ function walk_directory($path = '', $function = '', $recursive = '')
 		$directory = array(
 			$path
 		);
+		$path = '';
 	}
 
 	/* else if directory */
@@ -76,6 +77,7 @@ function walk_directory($path = '', $function = '', $recursive = '')
 			'.svn'
 		);
 		$directory = read_directory($path, $ignore);
+		$path .= '/';
 	}
 
 	/* else handle error */
@@ -91,7 +93,7 @@ function walk_directory($path = '', $function = '', $recursive = '')
 	{
 		foreach($directory as $filename)
 		{
-			$path_sub = $path . '/' . $filename;
+			$path_sub = $path . $filename;
 
 			/* if file */
 

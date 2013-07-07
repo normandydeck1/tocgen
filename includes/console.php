@@ -3,7 +3,7 @@
 /**
  * Console
  *
- * @since 1.0
+ * @since 2.1
  *
  * @category Console
  * @package Tocgen

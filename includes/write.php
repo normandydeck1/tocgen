@@ -3,7 +3,7 @@
 /**
  * Write Toc
  *
- * @since 2.0
+ * @since 2.1
  *
  * @category Write
  * @package Tocgen
