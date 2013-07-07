@@ -23,11 +23,11 @@ function write_toc($path = '')
 
 	if ($contents_explode[1])
 	{
-		$position_toc_check = strpos($contents_explode[0], TOCGEN_TOC_CHECK);
+		$position_toc = strpos($contents_explode[0], TOCGEN_TOC_FLAG);
 
 		/* if toc check passed */
 
-		if ($position_toc_check > -1)
+		if ($position_toc > -1)
 		{
 			/* store old toc list */
 
@@ -42,29 +42,29 @@ function write_toc($path = '')
 
 	/* get all matches */
 
-	preg_match_all(TOCGEN_COMMENT_REGEX, $contents, $matches);
+	preg_match_all(TOCGEN_SECTION_REGEX, $contents, $matches);
 	$matches = $matches[0];
 
 	/* prepare matches */
 
-	$comment_parts = array(
-		TOCGEN_COMMENT_START,
-		TOCGEN_COMMENT_END,
-		TOCGEN_COMMENT_PREFIX
+	$section_parts = array(
+		TOCGEN_SECTION_START,
+		TOCGEN_SECTION_END,
+		TOCGEN_SECTION_PREFIX
 	);
 
 	/* process matches */
 
 	foreach ($matches as $key => $value)
 	{
-		$value = trim(str_replace($comment_parts, '', $value));
-		$position_section = strpos($value, TOCGEN_COMMENT_SECTION);
+		$value = trim(str_replace($section_parts, '', $value));
+		$position_section = strpos($value, TOCGEN_SECTION_FLAG);
 
 		/* if section */
 
 		if ($position_section > -1)
 		{
-			$value = trim(str_replace(TOCGEN_COMMENT_SECTION, '', $value));
+			$value = trim(str_replace(TOCGEN_SECTION_FLAG, '', $value));
 			$section_explode = explode('.', $value);
 			if ($section_explode[0])
 			{
@@ -75,8 +75,7 @@ function write_toc($path = '')
 
 			if ($section_sub_old == $section_sub_new)
 			{
-				$section_length = strlen($section_sub_new);
-				$value = constant(TOCGEN_TOC_INDENT . $section_length) . $value;
+				$value = TOCGEN_TOC_INDENT . $value;
 			}
 			$section_sub_old = $section_sub_new;
 
