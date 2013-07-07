@@ -3,6 +3,8 @@ Tocgen
 
 > Generate table of contents from multiple CSS and JS files.
 
+Supported extensions: <code>.coffee</code>, <code>.css</code>, <code>.js</code>, <code>.less</code>, <code>.sass</code>, <code>.scss</code>
+
 
 Usage
 -----

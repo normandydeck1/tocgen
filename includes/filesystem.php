@@ -71,10 +71,11 @@ function walk_directory($path = '', $function = '', $recursive = '')
 	{
 		/* read directory */
 
-		$directory = read_directory($path, array(
+		$ignore = array(
 			'.git',
 			'.svn'
-		));
+		);
+		$directory = read_directory($path, $ignore);
 	}
 
 	/* else handle error */
@@ -97,10 +98,18 @@ function walk_directory($path = '', $function = '', $recursive = '')
 			if (is_file($path_sub))
 			{
 				$extension = pathinfo($path_sub, PATHINFO_EXTENSION);
+				$supported = array(
+					'coffee',
+					'css',
+					'js',
+					'less',
+					'sass',
+					'scss'
+				);
 
-				/* if correct extension */
+				/* if supported extension */
 
-				if ($extension == 'css' || $extension == 'js')
+				if (in_array($extension, $supported))
 				{
 					call_user_func($function, $path_sub);
 				}

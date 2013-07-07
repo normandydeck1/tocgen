@@ -44,7 +44,7 @@ function console($message = '', $mode = '')
 
 			/* mode success */
 
-			else if ($mode === 'success')
+			else if ($mode == 'success')
 			{
 				$output .= '[1;32m';
 			}
