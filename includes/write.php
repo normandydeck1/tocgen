@@ -75,7 +75,7 @@ function write_toc($path = '')
 
 			if ($section_sub_old == $section_sub_new)
 			{
-				$section_length = strlen($section_sub);
+				$section_length = strlen($section_sub_new);
 				$value = constant(TOCGEN_TOC_INDENT . $section_length) . $value;
 			}
 			$section_sub_old = $section_sub_new;
