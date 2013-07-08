@@ -9,7 +9,7 @@
  * @package Tocgen
  * @author Henry Ruhs
  *
- * @param string $path
+ * @param string
  */
 
 function write_toc($path = '')

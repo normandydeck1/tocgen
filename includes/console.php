@@ -11,7 +11,7 @@
  *
  * @param string $message
  * @param string $mode
- * @return string $output
+ * @return string
  */
 
 function console($message = '', $mode = '')

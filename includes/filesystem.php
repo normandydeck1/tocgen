@@ -11,7 +11,7 @@
  *
  * @param string $input
  * @param string|array $ignore
- * @return array $output
+ * @return array
  */
 
 function read_directory($input = '', $ignore = '')
