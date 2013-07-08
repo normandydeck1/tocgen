@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Write Toc
+ * write toc
  *
  * @since 2.1
  *
@@ -9,7 +9,7 @@
  * @package Tocgen
  * @author Henry Ruhs
  *
- * @param $path string
+ * @param string $path
  */
 
 function write_toc($path = '')

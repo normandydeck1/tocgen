@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Console
+ * console
  *
  * @since 2.1
  *
@@ -9,9 +9,9 @@
  * @package Tocgen
  * @author Henry Ruhs
  *
- * @param $message string
- * @param $mode string
- * @return $output string
+ * @param string $message
+ * @param string $mode
+ * @return string $output
  */
 
 function console($message = '', $mode = '')

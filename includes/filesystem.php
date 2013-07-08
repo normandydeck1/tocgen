@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Read Directory
+ * read directory
  *
  * @since 2.1
  *
@@ -9,9 +9,9 @@
  * @package Tocgen
  * @author Henry Ruhs
  *
- * @param $input string
- * @param $ignore string|array
- * @return $output array
+ * @param string $input
+ * @param string|array $ignore
+ * @return array $output
  */
 
 function read_directory($input = '', $ignore = '')
@@ -41,7 +41,7 @@ function read_directory($input = '', $ignore = '')
 }
 
 /**
- * Walk Directory
+ * walk directory
  *
  * @since 1.0
  *
@@ -49,9 +49,9 @@ function read_directory($input = '', $ignore = '')
  * @package Tocgen
  * @author Henry Ruhs
  *
- * @param $path string
- * @param $function string
- * @param $recursive boolean
+ * @param string $path
+ * @param string $function
+ * @param boolean $recursive
  */
 
 function walk_directory($path = '', $function = '', $recursive = '')
