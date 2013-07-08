@@ -5,8 +5,8 @@
  *
  * @since 2.1
  *
- * @category Filesystem
  * @package Tocgen
+ * @category Filesystem
  * @author Henry Ruhs
  *
  * @param string $input
@@ -45,8 +45,8 @@ function read_directory($input = '', $ignore = '')
  *
  * @since 1.0
  *
- * @category Filesystem
  * @package Tocgen
+ * @category Filesystem
  * @author Henry Ruhs
  *
  * @param string $path

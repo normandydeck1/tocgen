@@ -5,8 +5,8 @@
  *
  * @since 2.1
  *
- * @category Console
  * @package Tocgen
+ * @category Console
  * @author Henry Ruhs
  *
  * @param string $message

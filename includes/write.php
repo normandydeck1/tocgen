@@ -5,8 +5,8 @@
  *
  * @since 2.1
  *
- * @category Write
  * @package Tocgen
+ * @category Write
  * @author Henry Ruhs
  *
  * @param string $path
