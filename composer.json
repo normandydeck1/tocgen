@@ -9,6 +9,10 @@
 		"post-install-cmd":
 		[
 			"del composer.lock"
+		],
+		"post-update-cmd":
+		[
+			"del composer.lock"
 		]
 	}
 }
