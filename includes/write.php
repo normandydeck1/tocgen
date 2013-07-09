@@ -29,10 +29,9 @@ function write_toc($path = '')
 
 		if ($position_toc > -1)
 		{
-			/* store old toc list */
+			/* store toc parts */
 
-			$toc_list_old = explode(TOCGEN_TOC_DELIMITER, $contents_explode[0], 3);
-			$toc_list_old = $toc_list_old[1];
+			$toc_list_parts_array = explode(TOCGEN_TOC_DELIMITER, $contents_explode[0]);
 
 			/* store contents */
 
@@ -91,7 +90,7 @@ function write_toc($path = '')
 	{
 		/* if equal toc list */
 
-		if (TOCGEN_FORCE == 0 && $toc_list_old == $toc_list_new)
+		if (TOCGEN_FORCE == 0 && in_array($toc_list_new, $toc_list_parts_array))
 		{
 			/* handle warning */
 
