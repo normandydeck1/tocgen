@@ -206,3 +206,9 @@ Output file:
 	color: #fff;
 }
 </pre>
+
+
+Troubleshooting
+---------------
+
+Keep in mind that TOCGEN_EOL inside your .tocgen file is equal to your IDE's default EOL setup.
