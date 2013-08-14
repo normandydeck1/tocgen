@@ -77,19 +77,19 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 			"package":
 			{
 				"name": "tocgen",
-				"version": "2.1",
+				"version": "2.2.1",
 				"source":
 				{
 					"url": "https://github.com/redaxmedia/tocgen.git",
 					"type": "git",
-					"reference": "2.1"
+					"reference": "2.2.1"
 				}
 			}
 		}
 	],
 	"require":
 	{
-		"tocgen": "2.1"
+		"tocgen": "2.2.1"
 	}
 }
 </pre>
