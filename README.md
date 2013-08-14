@@ -211,4 +211,4 @@ Output file:
 Troubleshooting
 ---------------
 
-Keep in mind that <code>TOCGEN_EOL</code> inside your .tocgen file equals your IDE's EOL setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
+Keep in mind that <code>TOCGEN_EOL</code> inside your .tocgen file equals your IDE's setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
