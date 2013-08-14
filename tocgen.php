@@ -17,7 +17,7 @@ if ($argv[1])
 
 	/* include config */
 
-	if (file_exists($argv[2]))
+	if (basename($argv[2]) == '.tocgen' && file_exists($argv[2]))
 	{
 		include_once($argv[2]);
 	}
