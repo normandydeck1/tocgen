@@ -21,9 +21,16 @@ if ($argv[1])
 	{
 		include_once($argv[2]);
 	}
-	else
+	else if (file_exists($tocgen_directory . '/.tocgen'))
 	{
 		include_once($tocgen_directory . '/.tocgen');
+	}
+
+	/* else exit */
+
+	else
+	{
+		exit();
 	}
 
 	/* force option */
