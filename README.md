@@ -127,7 +127,11 @@ grunt.loadNpmTasks('grunt-shell');
 
 /* register tasks */
 
-grunt.registerTask('toc', 'shell:tocCSS shell:tocJS');
+grunt.registerTask('toc',
+[
+	'shell:tocCSS',
+	'shell:tocJS'
+]);
 </pre>
 
 
