@@ -69,27 +69,10 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 
 <pre>
 {
-	"name": "Your Project",
-	"repositories":
-	[
-		{
-			"type": "package",
-			"package":
-			{
-				"name": "tocgen",
-				"version": "2.2.1",
-				"source":
-				{
-					"url": "https://github.com/redaxmedia/tocgen.git",
-					"type": "git",
-					"reference": "2.2.1"
-				}
-			}
-		}
-	],
-	"require":
+	"name": "vendor/project",
+	"require-dev":
 	{
-		"tocgen": "2.2.1"
+		"redaxmedia/tocgen": "2.2.1"
 	}
 }
 </pre>
@@ -110,12 +93,12 @@ grunt.initConfig(
 	{
 		tocCSS:
 		{
-			command: 'php vendor/tocgen/tocgen.php css',
+			command: 'php vendor/redaxmedia/tocgen/tocgen.php css',
 			stdout: true
 		},
 		tocJS:
 		{
-			command: 'php vendor/tocgen/tocgen.php js',
+			command: 'php vendor/redaxmedia/tocgen/tocgen.php js',
 			stdout: true
 		}
 	}
