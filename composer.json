@@ -1,5 +1,8 @@
 {
-	"name": "Tocgen",
+	"name": "redaxmedia/redaxscript",
+	"description": "Generate table of contents from multiple CSS and JS files",
+	"version": "2.2.1",
+	"licence": "GPL-3.0",
 	"require":
 	{
 		"php": ">5.3.2"
