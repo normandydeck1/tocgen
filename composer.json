@@ -6,16 +6,5 @@
 	"require":
 	{
 		"php": ">5.3.2"
-	},
-	"scripts":
-	{
-		"post-install-cmd":
-		[
-			"del composer.lock"
-		],
-		"post-update-cmd":
-		[
-			"del composer.lock"
-		]
 	}
 }
