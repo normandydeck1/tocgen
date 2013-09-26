@@ -69,7 +69,6 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 
 <pre>
 {
-	"name": "vendor/project",
 	"require-dev":
 	{
 		"redaxmedia/tocgen": "2.2.1"
