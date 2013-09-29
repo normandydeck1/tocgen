@@ -137,6 +137,13 @@ Input file:
 	padding: 2em;
 }
 
+/* Ignored comment */
+
+.sub
+{
+	color: #fff;
+}
+
 /* @section 2. Second section */
 
 .second
