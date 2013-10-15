@@ -47,7 +47,7 @@ define(TOCGEN_TOC_PREFIX, ' * ');
 define(TOCGEN_TOC_INDENT, '   ');
 define(TOCGEN_TOC_DELIMITER, ' *' . TOCGEN_EOL);
 define(TOCGEN_TOC_HEAD, TOCGEN_EOL . ' * @tableofcontents' . TOCGEN_EOL . TOCGEN_TOC_DELIMITER);
-define(TOCGEN_TOC_FOOT, TOCGEN_TOC_DELIMITER . ' * @since 1.0' . TOCGEN_EOL . TOCGEN_TOC_DELIMITER . ' * @package Your Project' . TOCGEN_EOL . ' * @author Your Name' . TOCGEN_EOL);
+define(TOCGEN_TOC_FOOT, TOCGEN_TOC_DELIMITER . ' * @since 1.0.0' . TOCGEN_EOL . TOCGEN_TOC_DELIMITER . ' * @package Your Project' . TOCGEN_EOL . ' * @author Your Name' . TOCGEN_EOL);
 define(TOCGEN_SECTION_FLAG, '@section');
 define(TOCGEN_SECTION_START, '/*');
 define(TOCGEN_SECTION_END, '*/');
