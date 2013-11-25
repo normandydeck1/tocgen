@@ -12,18 +12,18 @@ include_once($tocgen_directory . '/includes/write.php');
 
 if ($argv[1])
 {
+	global $config;
 	$path = realpath($argv[1]);
-	$recursive = 0;
 
 	/* include config */
 
 	if (basename($argv[2]) == '.tocgen' && file_exists($argv[2]))
 	{
-		include_once($argv[2]);
+		$config_contents = file_get_contents($argv[2]);
 	}
 	else if (file_exists($tocgen_directory . '/.tocgen'))
 	{
-		include_once($tocgen_directory . '/.tocgen');
+		$config_contents = file_get_contents($tocgen_directory . '/.tocgen');
 	}
 
 	/* else exit */
@@ -33,37 +33,36 @@ if ($argv[1])
 		exit();
 	}
 
+	/* decode json */
+
+	if ($config_contents)
+	{
+		$config = json_decode($config_contents, true);
+	}
+
 	/* force option */
 
 	if (in_array('--force', $argv) || in_array('-f', $argv))
 	{
-		define('TOCGEN_FORCE', 1);
-	}
-	else
-	{
-		define('TOCGEN_FORCE', 0);
+		$config['options']['force'] = true;
 	}
 
 	/* recursive option */
 
 	if (in_array('--recursive', $argv) || in_array('-r', $argv))
 	{
-		$recursive = 1;
+		$config['options']['recursive'] = true;
 	}
 
 	/* quite option */
 
 	if (in_array('--quite', $argv) || in_array('-q', $argv))
 	{
-		define('TOCGEN_QUITE', 1);
-	}
-	else
-	{
-		define('TOCGEN_QUITE', 0);
+		$config['options']['quite'] = true;
 	}
 
 	/* walk directory */
 
-	walk_directory($path, 'write_toc', $recursive);
+	walk_directory($path, 'write_toc');
 }
 ?>

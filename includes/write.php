@@ -14,16 +14,18 @@
 
 function write_toc($path = '')
 {
+	global $config;
+
 	/* get contents */
 
 	$contents = $contents_old = file_get_contents($path);
-	$contents_explode = explode(TOCGEN_TOC_END, $contents, 2);
+	$contents_explode = explode($config['toc']['end'], $contents, 2);
 
 	/* remove present toc block */
 
 	if ($contents_explode[1])
 	{
-		$position_toc = strpos($contents_explode[0], TOCGEN_TOC_FLAG);
+		$position_toc = strpos($contents_explode[0], $config['toc']['flag']);
 
 		/* if toc check passed */
 
@@ -31,7 +33,7 @@ function write_toc($path = '')
 		{
 			/* store toc parts */
 
-			$toc_list_parts_array = explode(TOCGEN_TOC_DELIMITER, $contents_explode[0]);
+			$toc_list_parts_array = explode($config['toc']['delimiter'], $contents_explode[0]);
 
 			/* store contents */
 
@@ -41,15 +43,15 @@ function write_toc($path = '')
 
 	/* get all matches */
 
-	preg_match_all(TOCGEN_SECTION_REGEX, $contents, $matches);
+	preg_match_all($config['section']['pattern'], $contents, $matches);
 	$matches = $matches[0];
 
 	/* prepare matches */
 
 	$section_parts = array(
-		TOCGEN_SECTION_START,
-		TOCGEN_SECTION_END,
-		TOCGEN_SECTION_PREFIX
+		$config['section']['start'],
+		$config['section']['end'],
+		$config['section']['prefix']
 	);
 
 	/* process matches */
@@ -57,13 +59,13 @@ function write_toc($path = '')
 	foreach ($matches as $key => $value)
 	{
 		$value = trim(str_replace($section_parts, '', $value));
-		$position_section = strpos($value, TOCGEN_SECTION_FLAG);
+		$position_section = strpos($value, $config['section']['flag']);
 
 		/* if section */
 
 		if ($position_section > -1)
 		{
-			$value = trim(str_replace(TOCGEN_SECTION_FLAG, '', $value));
+			$value = trim(str_replace($config['section']['flag'], '', $value));
 			$section_explode = explode('.', $value);
 			if ($section_explode[0])
 			{
@@ -74,13 +76,13 @@ function write_toc($path = '')
 
 			if ($section_sub_old == $section_sub_new)
 			{
-				$value = TOCGEN_TOC_INDENT . $value;
+				$value = $config['toc']['indent'] . $value;
 			}
 			$section_sub_old = $section_sub_new;
 
 			/* collect new toc list */
 
-			$toc_list_new .= TOCGEN_TOC_PREFIX . $value . TOCGEN_EOL;
+			$toc_list_new .= $config['toc']['prefix'] . $value . $config['eol'];
 		}
 	}
 
@@ -90,13 +92,13 @@ function write_toc($path = '')
 	{
 		/* if equal toc list */
 
-		if (TOCGEN_FORCE == 0 && in_array($toc_list_new, $toc_list_parts_array))
+		if ($config['options']['force'] === false && in_array($toc_list_new, $toc_list_parts_array))
 		{
 			/* handle warning */
 
-			if (TOCGEN_QUITE == 0)
+			if ($config['options']['quite'] === false)
 			{
-				echo console(TOCGEN_NO_CHANGES . TOCGEN_COLON, 'warning') . ' ' . $path . PHP_EOL;
+				echo console($config['wording']['noChanges'] . $config['wording']['colon'], 'warning') . ' ' . $path . PHP_EOL;
 			}
 		}
 
@@ -104,20 +106,20 @@ function write_toc($path = '')
 
 		else
 		{
-			if (TOCGEN_QUITE == 0)
+			if ($config['options']['quite'] === false)
 			{
-				echo console(TOCGEN_TOC_UPDATED . TOCGEN_COLON, 'success') . ' ' . $path . PHP_EOL;
+				echo console($config['wording']['tocUpdated'] . $config['wording']['colon'], 'success') . ' ' . $path . PHP_EOL;
 			}
-			$contents_new = TOCGEN_TOC_START . TOCGEN_TOC_HEAD . $toc_list_new . TOCGEN_TOC_FOOT . TOCGEN_TOC_END . $contents;
+			$contents_new = $config['toc']['start'] . $config['toc']['head'] . $toc_list_new . $config['toc']['foot'] . $config['toc']['end'] . $contents;
 			file_put_contents($path, $contents_new);
 		}
 	}
 
 	/* else handle error */
 
-	else if (TOCGEN_QUITE == 0)
+	else if ($config['options']['quite'] === false)
 	{
-		echo console(TOCGEN_NO_SECTION . TOCGEN_COLON, 'error') . ' ' . $path . PHP_EOL;
+		echo console($config['wording']['noSection'] . $config['wording']['colon'], 'error') . ' ' . $path . PHP_EOL;
 	}
 }
 ?>

@@ -83,7 +83,6 @@ Grunt
 How to implement Tocgen into [gruntfile.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
 
 <pre>
-
 /* config grunt */
 
 grunt.initConfig(

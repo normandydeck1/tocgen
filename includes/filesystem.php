@@ -51,11 +51,12 @@ function read_directory($input = '', $ignore = '')
  *
  * @param string $path
  * @param string $function
- * @param boolean $recursive
  */
 
-function walk_directory($path = '', $function = '', $recursive = '')
+function walk_directory($path = '', $function = '')
 {
+	global $config;
+
 	/* if file */
 
 	if (is_file($path))
@@ -82,9 +83,9 @@ function walk_directory($path = '', $function = '', $recursive = '')
 
 	/* else handle error */
 
-	else if (TOCGEN_QUITE == 0)
+	else if ($config['options']['quite'] == false)
 	{
-		echo console(TOCGEN_NO_TARGET . TOCGEN_POINT, 'error') . PHP_EOL;
+		echo console($config['wording']['noTarget'] . $config['wording']['point'], 'error') . PHP_EOL;
 	}
 
 	/* if directory count */
@@ -100,18 +101,10 @@ function walk_directory($path = '', $function = '', $recursive = '')
 			if (is_file($path_sub))
 			{
 				$extension = pathinfo($path_sub, PATHINFO_EXTENSION);
-				$supported = array(
-					'coffee',
-					'css',
-					'js',
-					'less',
-					'sass',
-					'scss'
-				);
 
-				/* if supported extension */
+				/* check supported extension */
 
-				if (in_array($extension, $supported))
+				if (in_array($extension, $config['extensions']))
 				{
 					call_user_func($function, $path_sub);
 				}
@@ -119,9 +112,9 @@ function walk_directory($path = '', $function = '', $recursive = '')
 
 			/* else if directory */
 
-			else if (is_dir($path_sub) && $recursive)
+			else if (is_dir($path_sub) && $config['options']['recursive'])
 			{
-				walk_directory($path_sub, $function, $recursive);
+				walk_directory($path_sub, $function);
 			}
 		}
 	}
