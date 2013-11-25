@@ -6,8 +6,8 @@
 		"start": "/**",
 		"end": " */\r\n\r\n",
 		"prefix": " * ",
-		"indent": "   ",
 		"delimiter": " *\r\n",
+		"indent": "   ",
 		"head": "\r\n * @tableofcontents\r\n *\r\n",
 		"foot": ""
 	},
@@ -16,7 +16,6 @@
 		"flag": "@section",
 		"start": "/*",
 		"end": "*/",
-		"prefix": "*",
 		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
 	},
 	"extensions":

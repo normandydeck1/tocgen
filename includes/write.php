@@ -50,8 +50,7 @@ function write_toc($path = '')
 
 	$section_parts = array(
 		$config['section']['start'],
-		$config['section']['end'],
-		$config['section']['prefix']
+		$config['section']['end']
 	);
 
 	/* process matches */
