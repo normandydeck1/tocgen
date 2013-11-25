@@ -19,7 +19,7 @@ Single file or directory.
 
 **Config:**
 
-Load config from .tocgen JSON file.
+Load config from .tocgen file.
 
 
 **Options:**
@@ -45,8 +45,8 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"start": "/**",
 		"end": " */\r\n\r\n",
 		"prefix": " * ",
-		"indent": "   ",
 		"delimiter": " *\r\n",
+		"indent": "   ",
 		"head": "\r\n * @tableofcontents\r\n *\r\n",
 		"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
 	},
@@ -55,7 +55,6 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"flag": "@section",
 		"start": "/*",
 		"end": "*/",
-		"prefix": "*",
 		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
 	},
 	"extensions":
