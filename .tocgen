@@ -8,7 +8,7 @@
 		"prefix": " * ",
 		"indent": "   ",
 		"delimiter": " *\r\n",
-		"head": "\r\n * @tableofcontents\r\n*\r\n",
+		"head": "\r\n * @tableofcontents\r\n *\r\n",
 		"foot": ""
 	},
 	"section":
@@ -17,7 +17,7 @@
 		"start": "/*",
 		"end": "*/",
 		"prefix": "*",
-		"pattern": "//\\*(.|[\r\n])*?\\*//"
+		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
 	},
 	"extensions":
 	[

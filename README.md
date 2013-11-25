@@ -19,7 +19,7 @@ Single file or directory.
 
 **Config:**
 
-Load config from .tocgen file.
+Load config from .tocgen JSON file.
 
 
 **Options:**
@@ -37,28 +37,52 @@ Config
 Extend your table of contents with *@since*, *@package* and *@author* by using a .tocgen file like this:
 
 <pre>
-/* config tocgen */
-
-define(TOCGEN_EOL, "\r\n");
-define(TOCGEN_TOC_FLAG, '@tableofcontents');
-define(TOCGEN_TOC_START, '/**');
-define(TOCGEN_TOC_END, ' */' . TOCGEN_EOL . TOCGEN_EOL);
-define(TOCGEN_TOC_PREFIX, ' * ');
-define(TOCGEN_TOC_INDENT, '   ');
-define(TOCGEN_TOC_DELIMITER, ' *' . TOCGEN_EOL);
-define(TOCGEN_TOC_HEAD, TOCGEN_EOL . ' * @tableofcontents' . TOCGEN_EOL . TOCGEN_TOC_DELIMITER);
-define(TOCGEN_TOC_FOOT, TOCGEN_TOC_DELIMITER . ' * @since 1.0.0' . TOCGEN_EOL . TOCGEN_TOC_DELIMITER . ' * @package Your Project' . TOCGEN_EOL . ' * @author Your Name' . TOCGEN_EOL);
-define(TOCGEN_SECTION_FLAG, '@section');
-define(TOCGEN_SECTION_START, '/*');
-define(TOCGEN_SECTION_END, '*/');
-define(TOCGEN_SECTION_PREFIX, '*');
-define(TOCGEN_SECTION_REGEX, '/\/\*(.|[' . TOCGEN_EOL . '])*?\*\//');
-define(TOCGEN_NO_TARGET, 'File or directory not found');
-define(TOCGEN_NO_SECTION, TOCGEN_SECTION_FLAG . ' not found');
-define(TOCGEN_NO_CHANGES, 'No changes were made');
-define(TOCGEN_TOC_UPDATED, 'Table of contents updated');
-define(TOCGEN_POINT, '.');
-define(TOCGEN_COLON, ':');
+{
+	"eol": "\r\n",
+	"toc":
+	{
+		"flag": "@tableofcontents",
+		"start": "/**",
+		"end": " */\r\n\r\n",
+		"prefix": " * ",
+		"indent": "   ",
+		"delimiter": " *\r\n",
+		"head": "\r\n * @tableofcontents\r\n *\r\n",
+		"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
+	},
+	"section":
+	{
+		"flag": "@section",
+		"start": "/*",
+		"end": "*/",
+		"prefix": "*",
+		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
+	},
+	"extensions":
+	[
+		"coffee",
+		"css",
+		"js",
+		"less",
+		"sass",
+		"scss"
+	],
+	"wording":
+	{
+		"noTarget": "File or directory not found",
+		"noSection": "No section found",
+		"noChanges": "No changes were made",
+		"tocUpdated": "Table of contents updated",
+		"point": ".",
+		"colon": ":"
+	},
+	"options":
+	{
+		"force": false,
+		"recursive": false,
+		"quite": false
+	}
+}
 </pre>
 
 

@@ -41,7 +41,7 @@ function write_toc($path = '')
 		}
 	}
 
-	/* get all matches */
+	/* get all section matches */
 
 	preg_match_all($config['section']['pattern'], $contents, $matches);
 	$matches = $matches[0];
