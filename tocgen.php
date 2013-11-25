@@ -3,27 +3,29 @@ error_reporting(0);
 
 /* include core files */
 
-$tocgen_directory = dirname(__FILE__);
-include_once($tocgen_directory . '/includes/console.php');
-include_once($tocgen_directory . '/includes/filesystem.php');
-include_once($tocgen_directory . '/includes/write.php');
+$tocgenDirectory = dirname(__FILE__);
+include_once($tocgenDirectory . '/includes/console.php');
+include_once($tocgenDirectory . '/includes/filesystem.php');
+include_once($tocgenDirectory . '/includes/write.php');
 
 /* handle argument */
 
 if ($argv[1])
 {
 	global $config;
-	$path = realpath($argv[1]);
 
 	/* include config */
 
-	if (basename($argv[2]) == '.tocgen' && file_exists($argv[2]))
+	if (basename($argv[2]) === '.tocgen' && file_exists($argv[2]))
 	{
-		$config_contents = file_get_contents($argv[2]);
+		$configContents = file_get_contents($argv[2]);
 	}
-	else if (file_exists($tocgen_directory . '/.tocgen'))
+
+	/* else if default config */
+
+	else if (file_exists($tocgenDirectory . '/.tocgen'))
 	{
-		$config_contents = file_get_contents($tocgen_directory . '/.tocgen');
+		$configContents = file_get_contents($tocgenDirectory . '/.tocgen');
 	}
 
 	/* else exit */
@@ -33,36 +35,25 @@ if ($argv[1])
 		exit();
 	}
 
-	/* decode json */
+	/* decode contents */
 
-	if ($config_contents)
+	if ($configContents)
 	{
-		$config = json_decode($config_contents, true);
+		$config = json_decode($configContents, true);
 	}
 
-	/* force option */
+	/* handle options */
 
-	if (in_array('--force', $argv) || in_array('-f', $argv))
+	foreach ($config['options'] as $key => $value)
 	{
-		$config['options']['force'] = true;
-	}
-
-	/* recursive option */
-
-	if (in_array('--recursive', $argv) || in_array('-r', $argv))
-	{
-		$config['options']['recursive'] = true;
-	}
-
-	/* quite option */
-
-	if (in_array('--quite', $argv) || in_array('-q', $argv))
-	{
-		$config['options']['quite'] = true;
+		if (in_array('--' . $key, $argv) || in_array('-' . substr($key, 0, 1), $argv))
+		{
+			$config['options'][$key] = true;
+		}
 	}
 
 	/* walk directory */
 
-	walk_directory($path, 'write_toc');
+	walkDirectory(realpath($argv[1]), 'writeToc');
 }
 ?>

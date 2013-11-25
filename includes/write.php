@@ -3,7 +3,7 @@
 /**
  * write toc
  *
- * @since 2.1
+ * @since 2.3.0
  *
  * @package Tocgen
  * @category Write
@@ -12,86 +12,86 @@
  * @param string $path
  */
 
-function write_toc($path = '')
+function writeToc($path = '')
 {
 	global $config;
 
 	/* get contents */
 
-	$contents = $contents_old = file_get_contents($path);
-	$contents_explode = explode($config['toc']['end'], $contents, 2);
+	$contents = $contentsOld = file_get_contents($path);
+	$contentsExplode = explode($config['toc']['end'], $contents, 2);
 
-	/* remove present toc block */
+	/* remove present toc */
 
-	if ($contents_explode[1])
+	if ($contentsExplode[1])
 	{
-		$position_toc = strpos($contents_explode[0], $config['toc']['flag']);
+		$positionToc = strpos($contentsExplode[0], $config['toc']['flag']);
 
 		/* if toc check passed */
 
-		if ($position_toc > -1)
+		if ($positionToc > -1)
 		{
 			/* store toc parts */
 
-			$toc_list_parts_array = explode($config['toc']['delimiter'], $contents_explode[0]);
+			$tocParts = explode($config['toc']['delimiter'], $contentsExplode[0]);
 
 			/* store contents */
 
-			$contents = trim($contents_explode[1]);
+			$contents = trim($contentsExplode[1]);
 		}
 	}
 
 	/* get all section matches */
 
-	preg_match_all($config['section']['pattern'], $contents, $matches);
-	$matches = $matches[0];
+	preg_match_all($config['section']['pattern'], $contents, $sectionMatches);
+	$sectionMatches = $sectionMatches[0];
 
-	/* prepare matches */
+	/* prepare section matches */
 
-	$section_parts = array(
+	$sectionParts = array(
 		$config['section']['start'],
 		$config['section']['end']
 	);
 
-	/* process matches */
+	/* process section matches */
 
-	foreach ($matches as $key => $value)
+	foreach ($sectionMatches as $key => $value)
 	{
-		$value = trim(str_replace($section_parts, '', $value));
-		$position_section = strpos($value, $config['section']['flag']);
+		$value = trim(str_replace($sectionParts, '', $value));
+		$positionSection = strpos($value, $config['section']['flag']);
 
-		/* if section */
+		/* section is present */
 
-		if ($position_section > -1)
+		if ($positionSection > -1)
 		{
 			$value = trim(str_replace($config['section']['flag'], '', $value));
-			$section_explode = explode('.', $value);
-			if ($section_explode[0])
+			$sectionExplode = explode('.', $value);
+			if ($sectionExplode[0])
 			{
-				$section_sub_new = $section_explode[0];
+				$sectionSubNew = $sectionExplode[0];
 			}
 
-			/* if sub section */
+			/* indent sub section */
 
-			if ($section_sub_old == $section_sub_new)
+			if ($sectionSubOld == $sectionSubNew)
 			{
 				$value = $config['toc']['indent'] . $value;
 			}
-			$section_sub_old = $section_sub_new;
+			$sectionSubOld = $sectionSubNew;
 
-			/* collect new toc list */
+			/* collect new toc */
 
-			$toc_list_new .= $config['toc']['prefix'] . $value . $config['eol'];
+			$tocNew .= $config['toc']['prefix'] . $value . $config['eol'];
 		}
 	}
 
-	/* process new toc list */
+	/* process new toc */
 
-	if ($toc_list_new)
+	if ($tocNew)
 	{
-		/* if equal toc list */
+		/* if equal toc */
 
-		if ($config['options']['force'] === false && in_array($toc_list_new, $toc_list_parts_array))
+		if ($config['options']['force'] === false && in_array($tocNew, $tocParts))
 		{
 			/* handle warning */
 
@@ -109,8 +109,8 @@ function write_toc($path = '')
 			{
 				echo console($config['wording']['tocUpdated'] . $config['wording']['colon'], 'success') . ' ' . $path . PHP_EOL;
 			}
-			$contents_new = $config['toc']['start'] . $config['toc']['head'] . $toc_list_new . $config['toc']['foot'] . $config['toc']['end'] . $contents;
-			file_put_contents($path, $contents_new);
+			$contentsNew = $config['toc']['start'] . $config['toc']['head'] . $tocNew . $config['toc']['foot'] . $config['toc']['end'] . $contents;
+			file_put_contents($path, $contentsNew);
 		}
 	}
 

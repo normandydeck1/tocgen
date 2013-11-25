@@ -3,7 +3,7 @@
 /**
  * console
  *
- * @since 2.1
+ * @since 2.3.0
  *
  * @package Tocgen
  * @category Console
@@ -16,39 +16,20 @@
 
 function console($message = '', $mode = '')
 {
-	$operating_system = strtolower(php_uname('s'));
+	$operatingSystem = strtolower(php_uname('s'));
+	$noteColors = array(
+		'error' => '[1;31m',
+		'success' => '[1;32m',
+		'warning' => '[1;33m'
+	);
 
-	/* if linux present */
+	/* linux is present */
 
-	if ($operating_system == 'linux')
+	if ($operatingSystem == 'linux')
 	{
 		if ($message && $mode)
 		{
-			/* collect output */
-
-			$output = chr(27);
-
-			/* mode error */
-
-			if ($mode == 'error')
-			{
-				$output .= '[1;31m';
-			}
-
-			/* mode warning */
-
-			else if ($mode == 'warning')
-			{
-				$output .= '[1;33m';
-			}
-
-			/* mode success */
-
-			else if ($mode == 'success')
-			{
-				$output .= '[1;32m';
-			}
-			$output .= $message . chr(27) . '[0m';
+			$output = chr(27) . $noteColors[$mode] . $message . chr(27) . '[0m';
 		}
 	}
 

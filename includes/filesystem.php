@@ -3,7 +3,7 @@
 /**
  * read directory
  *
- * @since 2.1
+ * @since 2.3.0
  *
  * @package Tocgen
  * @category Filesystem
@@ -14,13 +14,9 @@
  * @return array
  */
 
-function read_directory($input = '', $ignore = '')
+function readDirectory($input = '', $ignore = '')
 {
-	$handle = opendir($input);
-	while ($value = readdir($handle))
-	{
-		$output[] = $value;
-	}
+	$output = scandir($input);
 
 	/* collect output */
 
@@ -43,7 +39,7 @@ function read_directory($input = '', $ignore = '')
 /**
  * walk directory
  *
- * @since 1.0
+ * @since 2.3.0
  *
  * @package Tocgen
  * @category Filesystem
@@ -53,7 +49,7 @@ function read_directory($input = '', $ignore = '')
  * @param string $function
  */
 
-function walk_directory($path = '', $function = '')
+function walkDirectory($path = '', $function = '')
 {
 	global $config;
 
@@ -77,7 +73,7 @@ function walk_directory($path = '', $function = '')
 			'.git',
 			'.svn'
 		);
-		$directory = read_directory($path, $ignore);
+		$directory = readDirectory($path, $ignore);
 		$path .= '/';
 	}
 
@@ -94,27 +90,27 @@ function walk_directory($path = '', $function = '')
 	{
 		foreach($directory as $filename)
 		{
-			$path_sub = $path . $filename;
+			$pathSub = $path . $filename;
 
 			/* if file */
 
-			if (is_file($path_sub))
+			if (is_file($pathSub))
 			{
-				$extension = pathinfo($path_sub, PATHINFO_EXTENSION);
+				$extension = pathinfo($pathSub, PATHINFO_EXTENSION);
 
 				/* check supported extension */
 
 				if (in_array($extension, $config['extensions']))
 				{
-					call_user_func($function, $path_sub);
+					call_user_func($function, $pathSub);
 				}
 			}
 
 			/* else if directory */
 
-			else if (is_dir($path_sub) && $config['options']['recursive'])
+			else if (is_dir($pathSub) && $config['options']['recursive'])
 			{
-				walk_directory($path_sub, $function);
+				walkDirectory($pathSub, $function);
 			}
 		}
 	}
