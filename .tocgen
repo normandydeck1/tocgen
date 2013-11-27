@@ -43,6 +43,7 @@
 	{
 		"force": false,
 		"recursive": false,
-		"quite": false
+		"quite": false,
+		"log": false
 	}
 }

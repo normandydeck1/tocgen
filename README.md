@@ -3,8 +3,6 @@ Tocgen
 
 > Generate table of contents from multiple CSS and JS files.
 
-Supported extensions: <code>.coffee</code>, <code>.css</code>, <code>.js</code>, <code>.less</code>, <code>.sass</code>, <code>.scss</code>
-
 
 Usage
 -----
@@ -28,7 +26,9 @@ Load config from .tocgen file.
 
 <code>--recursive</code>, <code>-r</code> - Walk target directory recursively
 
-<code>--quite</code>, <code>-q</code> - Print nothing
+<code>--quite</code>, <code>-q</code> - Print nothing inside console
+
+<code>--log</code>, <code>-l</code> - Write error to error.log
 
 
 Config
@@ -55,6 +55,7 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"flag": "@section",
 		"start": "/*",
 		"end": "*/",
+		"delimiter": ".",
 		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
 	},
 	"extensions":
@@ -71,6 +72,8 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"noTarget": "File or directory not found",
 		"noSection": "No section found",
 		"noChanges": "No changes were made",
+		"duplicateRank": "Duplicate rank detected",
+		"wrongOrder": "Wrong order detected",
 		"tocUpdated": "Table of contents updated",
 		"point": ".",
 		"colon": ":"
@@ -79,7 +82,8 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 	{
 		"force": false,
 		"recursive": false,
-		"quite": false
+		"quite": false,
+		"log": false
 	}
 }
 </pre>

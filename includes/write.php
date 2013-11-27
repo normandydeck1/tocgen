@@ -18,7 +18,7 @@ function writeToc($path = '')
 
 	/* get contents */
 
-	$contents = $contentsOld = file_get_contents($path);
+	$contents = file_get_contents($path);
 	$contentsExplode = explode($config['toc']['end'], $contents, 2);
 
 	/* remove present toc */
@@ -80,7 +80,10 @@ function writeToc($path = '')
 				{
 					echo console($config['wording']['duplicateRank'] . $config['wording']['colon'], 'error') . ' ' . $path . PHP_EOL;
 				}
-				$tocNew .= $config['wording']['duplicateRank'] . $config['wording']['colon'] . ' ';
+				if ($config['options']['log'] === true)
+				{
+					$log .= $config['wording']['duplicateRank'] . $config['wording']['colon'] . ' ' . $path . PHP_EOL;
+				}
 			}
 
 			/* wrong order */
@@ -91,7 +94,10 @@ function writeToc($path = '')
 				{
 					echo console($config['wording']['wrongOrder'] . $config['wording']['colon'], 'error') . ' ' . $path . PHP_EOL;
 				}
-				$tocNew .= $config['wording']['wrongOrder'] . $config['wording']['colon'] . ' ';
+				if ($config['options']['log'] === true)
+				{
+					$log .= $config['wording']['wrongOrder'] . $config['wording']['colon'] . ' ' . $path . PHP_EOL;
+				}
 			}
 
 			/* indent rank */
@@ -148,6 +154,13 @@ function writeToc($path = '')
 	else if ($config['options']['quite'] === false)
 	{
 		echo console($config['wording']['noSection'] . $config['wording']['colon'], 'warning') . ' ' . $path . PHP_EOL;
+	}
+
+	/* write log */
+
+	if ($log)
+	{
+		file_put_contents('error.log', $log);
 	}
 }
 ?>
