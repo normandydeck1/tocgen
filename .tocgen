@@ -16,6 +16,7 @@
 		"flag": "@section",
 		"start": "/*",
 		"end": "*/",
+		"delimiter": ".",
 		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
 	},
 	"extensions":
@@ -32,6 +33,8 @@
 		"noTarget": "File or directory not found",
 		"noSection": "No section found",
 		"noChanges": "No changes were made",
+		"duplicateRank": "Duplicate rank detected",
+		"wrongOrder": "Wrong order detected",
 		"tocUpdated": "Table of contents updated",
 		"point": ".",
 		"colon": ":"

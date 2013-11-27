@@ -55,33 +55,51 @@ function writeToc($path = '')
 
 	/* process section matches */
 
-	foreach ($sectionMatches as $key => $value)
+	foreach ($sectionMatches as $sectionValue)
 	{
-		$value = trim(str_replace($sectionParts, '', $value));
-		$positionSection = strpos($value, $config['section']['flag']);
+		$sectionValue = trim(str_replace($sectionParts, '', $sectionValue));
+		$positionSection = strpos($sectionValue, $config['section']['flag']);
 
 		/* section is present */
 
 		if ($positionSection > -1)
 		{
-			$value = trim(str_replace($config['section']['flag'], '', $value));
-			$sectionExplode = explode('.', $value);
-			if ($sectionExplode[0])
-			{
-				$sectionSubNew = $sectionExplode[0];
-			}
-
-			/* indent sub section */
-
-			if ($sectionSubOld == $sectionSubNew)
-			{
-				$value = $config['toc']['indent'] . $value;
-			}
-			$sectionSubOld = $sectionSubNew;
+			$sectionValue = trim(str_replace($config['section']['flag'], '', $sectionValue));
+			$sectionRankNew = preg_replace('/[^0-9' . $config['section']['delimiter'] . ']/', '', $sectionValue);
+			$sectionRankExplode = explode($config['section']['delimiter'], $sectionRankNew);
 
 			/* collect new toc */
 
-			$tocNew .= $config['toc']['prefix'] . $value . $config['eol'];
+			$tocNew .= $config['toc']['prefix'];
+
+			/* duplicate rank */
+
+			if ($sectionRankNew === $sectionRankOld)
+			{
+				if ($config['options']['quite'] === false)
+				{
+					echo console($config['wording']['duplicateRank'] . $config['wording']['colon'], 'error') . ' ' . $path . PHP_EOL;
+				}
+				$tocNew .= $config['wording']['duplicateRank'] . $config['wording']['colon'] . ' ';
+			}
+
+			/* indent rank */
+
+			else if (is_array($sectionRankExplode))
+			{
+                            foreach ($sectionRankExplode as $rankKey => $rankValue)
+                            {
+                                if (is_numeric($rankValue) && $rankKey !== 0)
+                                {
+                                    $tocNew .= $config['toc']['indent'];
+                                }
+                            }
+			}
+			$tocNew .= $sectionValue . $config['eol'];
+
+                        /* store old rank */
+
+			$sectionRankOld = $sectionRankNew;
 		}
 	}
 
@@ -118,7 +136,7 @@ function writeToc($path = '')
 
 	else if ($config['options']['quite'] === false)
 	{
-		echo console($config['wording']['noSection'] . $config['wording']['colon'], 'error') . ' ' . $path . PHP_EOL;
+		echo console($config['wording']['noSection'] . $config['wording']['colon'], 'warning') . ' ' . $path . PHP_EOL;
 	}
 }
 ?>
