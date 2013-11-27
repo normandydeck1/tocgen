@@ -74,7 +74,7 @@ function writeToc($path = '')
 
 			/* duplicate rank */
 
-			if ($sectionRankNew === $sectionRankOld)
+			if (version_compare($sectionRankNew, $sectionRankOld, '=='))
 			{
 				if ($config['options']['quite'] === false)
 				{
@@ -83,21 +83,32 @@ function writeToc($path = '')
 				$tocNew .= $config['wording']['duplicateRank'] . $config['wording']['colon'] . ' ';
 			}
 
+			/* wrong order */
+
+			else if (version_compare($sectionRankNew, $sectionRankOld, '<'))
+			{
+				if ($config['options']['quite'] === false)
+				{
+					echo console($config['wording']['wrongOrder'] . $config['wording']['colon'], 'error') . ' ' . $path . PHP_EOL;
+				}
+				$tocNew .= $config['wording']['wrongOrder'] . $config['wording']['colon'] . ' ';
+			}
+
 			/* indent rank */
 
 			else if (is_array($sectionRankExplode))
 			{
-                            foreach ($sectionRankExplode as $rankKey => $rankValue)
-                            {
-                                if (is_numeric($rankValue) && $rankKey !== 0)
-                                {
-                                    $tocNew .= $config['toc']['indent'];
-                                }
-                            }
+				foreach ($sectionRankExplode as $rankKey => $rankValue)
+				{
+					if (is_numeric($rankValue) && $rankKey !== 0)
+					{
+						$tocNew .= $config['toc']['indent'];
+					}
+				}
 			}
 			$tocNew .= $sectionValue . $config['eol'];
 
-                        /* store old rank */
+			/* store old rank */
 
 			$sectionRankOld = $sectionRankNew;
 		}
