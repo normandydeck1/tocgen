@@ -6,15 +6,8 @@ error_reporting(-1);
 $currentDirectory = dirname(__FILE__);
 include_once($currentDirectory . '/tocgen.php');
 
-/* handle arguments */
+/* process */
 
-if (isset($argv))
-{
-	$tocgen = new Tocgen($argv);
-	echo $tocgen->process();
-}
-else
-{
-	exit();
-}
+$tocgen = new Tocgen($argv);
+echo $tocgen->process();
 ?>

@@ -18,7 +18,7 @@ class Tocgen
 	 */
 
 	private $_paths = array(
-		'/',
+		'target' => '.',
 		'config' => '.tocgen'
 	);
 
@@ -30,11 +30,18 @@ class Tocgen
 	private $_config;
 
 	/**
+	 * wording
+	 * @var array
+	 */
+
+	protected $_wording;
+
+	/**
 	 * options
 	 * @var array
 	 */
 
-	private $_options;
+	protected $_options;
 
 	/**
 	 * target
@@ -70,7 +77,7 @@ class Tocgen
 	{
 		/* handle arguments */
 
-		if (isset($argv[1]))
+		if (isset($argv[1]) && file_exists($argv[1]))
 		{
 			$this->_paths['target'] = realpath($argv[1]);
 		}
@@ -93,6 +100,10 @@ class Tocgen
 				$this->_config['options'][$optionKey] = true;
 			}
 		}
+
+		/* create shortcuts */
+
+		$this->_wording = $this->_config['wording'];
 		$this->_options = $this->_config['options'];
 
 		/* scan target */
@@ -153,18 +164,51 @@ class Tocgen
 
 		/* handle target */
 
-		foreach ($target as $value)
+		foreach ($target as $file)
 		{
-			$extension = pathinfo($value, PATHINFO_EXTENSION);
+			$extension = pathinfo($file, PATHINFO_EXTENSION);
 
 			/* check extension */
 
 			if (in_array($extension, $this->_config['extensions']))
 			{
-				$output .= $this->_console($value) . PHP_EOL;
+				$output .= $this->_writeToc($file);
 			}
 		}
 		return $output;
+	}
+
+	/**
+	 * writeToc
+	 *
+	 * @since 3.0.0
+	 *
+	 * @param string $file
+	 */
+
+	protected function _writeToc($file = '')
+	{
+		return $this->_console($file) . PHP_EOL;
+	}
+
+	/**
+	 * parseContent
+	 *
+	 * @since 3.0.0
+	 */
+
+	protected function _parseContent()
+	{
+	}
+
+	/**
+	 * parseSection
+	 *
+	 * @since 3.0.0
+	 */
+
+	protected function _parseSection()
+	{
 	}
 
 	/**
@@ -178,6 +222,7 @@ class Tocgen
 
 	protected function _console($message = '', $mode = 'success')
 	{
+		$output = $message;
 		$operatingSystem = strtolower(php_uname('s'));
 
 		/* linux is present */
@@ -188,13 +233,6 @@ class Tocgen
 			{
 				$output = chr(27) . $this->_config['colors'][$mode] . $message . chr(27) . '[0m';
 			}
-		}
-
-		/* else fallback */
-
-		else
-		{
-			$output = $message;
 		}
 		return $output;
 	}

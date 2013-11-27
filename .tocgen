@@ -55,7 +55,7 @@
 	"options":
 	{
 		"force": false,
-		"recursive": false,
+		"recursive": true,
 		"quite": false,
 		"log": false
 	}
