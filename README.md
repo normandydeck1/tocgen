@@ -111,7 +111,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "master"
+		"redaxmedia/tocgen": "dev-master"
 	}
 }
 </pre>

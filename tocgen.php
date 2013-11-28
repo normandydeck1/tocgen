@@ -351,8 +351,11 @@ class Tocgen
 			if ($positionSection > -1)
 			{
 				$sectionValue = trim(str_replace($this->_config['section']['flag'], '', $sectionValue));
-				$sectionRankNew = preg_replace('/[^0-9' . $this->_config['section']['delimiter'] . ']/', '', $sectionValue);
-				$sectionRankExplode = explode($this->_config['section']['delimiter'], $sectionRankNew);
+
+				/* get rank matches */
+
+				preg_match('/[0-9' . $this->_config['section']['delimiter'] . ']+/', $sectionValue, $rankMatches);
+				$rankNew = $rankMatches[0];
 
 				/* collect new toc */
 
@@ -360,23 +363,27 @@ class Tocgen
 
 				/* duplicate rank */
 
-				if (version_compare($sectionRankNew, $sectionRankOld, '=='))
+				if (version_compare($rankNew, $rankOld, '=='))
 				{
 					$output['error'][] = $this->_wording['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
 				/* wrong order */
 
-				else if (version_compare($sectionRankNew, $sectionRankOld, '<'))
+				else if (version_compare($rankNew, $rankOld, '<'))
 				{
 					$output['error'][] = $this->_wording['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
 				/* indent rank */
 
-				else if (is_array($sectionRankExplode))
+				else
 				{
-					foreach ($sectionRankExplode as $rankKey => $rankValue)
+					$rankExplode = explode($this->_config['section']['delimiter'], $rankNew);
+
+					/* handle rank explode */
+
+					foreach ($rankExplode as $rankKey => $rankValue)
 					{
 						if (is_numeric($rankValue) && $rankKey !== 0)
 						{
@@ -388,7 +395,7 @@ class Tocgen
 
 				/* store old rank */
 
-				$sectionRankOld = $sectionRankNew;
+				$rankOld = $rankNew;
 			}
 		}
 		return $output;
