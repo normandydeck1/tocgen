@@ -188,27 +188,130 @@ class Tocgen
 
 	protected function _writeToc($file = '')
 	{
+		/* parse contents */
+
+		$parseContents = $this->_parseContents($file);
+		$contents = $parseContents['contents'];
+		$tocParts = $parseContents['tocParts'];
+
+		/* parse sections */
+
+		$parseSections = $this->_parseSections($file, $contents);
+		$tocNew = $parseSections['tocNew'];
+		$error = $parseSections['error'];
+
 		return $this->_console($file) . PHP_EOL;
 	}
 
 	/**
-	 * parseContent
+	 * parseContents
 	 *
 	 * @since 3.0.0
+	 *
+	 * @param string $file
 	 */
 
-	protected function _parseContent()
+	protected function _parseContents($file = '')
 	{
+		$output = array();
+
+		/* get contents */
+
+		$output['contents'] = file_get_contents($file);
+		$contentsExplode = explode($this->_config['toc']['end'], $output['contents'], 2);
+
+		/* remove present toc */
+
+		if (isset($contentsExplode[1]))
+		{
+			$positionToc = strpos($contentsExplode[0], $this->_config['toc']['flag']);
+
+			/* if toc check passed */
+
+			if ($positionToc > -1)
+			{
+				$output['tocParts'] = explode($this->_config['toc']['delimiter'], $contentsExplode[0]);
+				$output['contents'] = trim($contentsExplode[1]);
+			}
+		}
+		return $output;
 	}
 
 	/**
-	 * parseSection
+	 * parseSections
 	 *
 	 * @since 3.0.0
 	 */
 
-	protected function _parseSection()
+	protected function _parseSections($contents = '')
 	{
+		$output = array();
+
+		/* get section matches */
+
+		preg_match_all($this->_config['section']['pattern'], $contents, $sectionMatches);
+		$sectionMatches = $sectionMatches[0];
+
+		/* prepare section matches */
+
+		$sectionParts = array(
+			$this->_config['section']['start'],
+			$this->_config['section']['end']
+		);
+
+		/* process section matches */
+
+		foreach ($sectionMatches as $sectionValue)
+		{
+			$sectionValue = trim(str_replace($sectionParts, '', $sectionValue));
+			$positionSection = strpos($sectionValue, $this->_config['section']['flag']);
+
+			/* section is present */
+
+			if ($positionSection > -1)
+			{
+				$sectionValue = trim(str_replace($this->_config['section']['flag'], '', $sectionValue));
+				$sectionRankNew = preg_replace('/[^0-9' . $this->_config['section']['delimiter'] . ']/', '', $sectionValue);
+				$sectionRankExplode = explode($this->_config['section']['delimiter'], $sectionRankNew);
+
+				/* collect new toc */
+
+				$output['tocNew'] .= $this->_config['toc']['prefix'];
+
+				/* duplicate rank */
+
+				if (version_compare($sectionRankNew, $sectionRankOld, '=='))
+				{
+					$output['error'] .= $this->_config['wording']['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
+				}
+
+				/* wrong order */
+
+				else if (version_compare($sectionRankNew, $sectionRankOld, '<'))
+				{
+					$output['error'] .= $this->_config['wording']['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
+				}
+
+				/* indent rank */
+
+				else if (is_array($sectionRankExplode))
+				{
+					foreach ($sectionRankExplode as $rankKey => $rankValue)
+					{
+						if (is_numeric($rankValue) && $rankKey !== 0)
+						{
+							$output['tocNew'] .= $this->_config['toc']['indent'];
+						}
+					}
+				}
+				$output['tocNew'] .= $sectionValue . $this->_config['eol'];
+
+				/* store old rank */
+
+				$sectionRankOld = $sectionRankNew;
+			}
+		}
+		return $output;
 	}
 
 	/**

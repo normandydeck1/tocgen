@@ -7,7 +7,7 @@ Tocgen
 Usage
 -----
 
-Run <code>php tocgen.php [path] [config] [options]</code> from console.
+Run <code>php cli.php [path] [config] [options]</code> from console.
 
 
 **Path:**
@@ -28,7 +28,7 @@ Load config from .tocgen file.
 
 <code>--quite</code>, <code>-q</code> - Print nothing inside console
 
-<code>--log</code>, <code>-l</code> - Write error to error.log
+<code>--log</code>, <code>-l</code> - Write log files
 
 
 Config
