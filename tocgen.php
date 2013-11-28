@@ -142,9 +142,14 @@ class Tocgen
 		{
 			foreach ($directoryArray as $key => $value)
 			{
-				if (is_dir($target . '/' . $value))
+				$targetSub = $target . '/' . $value;
+				if (is_dir($targetSub))
 				{
-					$directoryArray[$key] = $this->_scanTarget($target . '/' . $value, $exclude);
+					$directoryArray[$key] = $this->_scanTarget($targetSub, $exclude);
+				}
+				else
+				{
+					$directoryArray[$key] = $targetSub;
 				}
 			}
 		}
@@ -197,8 +202,8 @@ class Tocgen
 		/* parse sections */
 
 		$parseSections = $this->_parseSections($file, $contents);
+		$errors = $parseSections['errors'];
 		$tocNew = $parseSections['tocNew'];
-		$error = $parseSections['error'];
 
 		return $this->_console($file) . PHP_EOL;
 	}
@@ -213,7 +218,10 @@ class Tocgen
 
 	protected function _parseContents($file = '')
 	{
-		$output = array();
+		$output = array(
+		    'contents' => '',
+		    'tocParts' => ''
+		);
 
 		/* get contents */
 
@@ -222,7 +230,7 @@ class Tocgen
 
 		/* remove present toc */
 
-		if (isset($contentsExplode[1]))
+		if (isset($contentsExplode[0]) && isset($contentsExplode[1]))
 		{
 			$positionToc = strpos($contentsExplode[0], $this->_config['toc']['flag']);
 
@@ -230,8 +238,8 @@ class Tocgen
 
 			if ($positionToc > -1)
 			{
-				$output['tocParts'] = explode($this->_config['toc']['delimiter'], $contentsExplode[0]);
 				$output['contents'] = trim($contentsExplode[1]);
+				$output['tocParts'] = explode($this->_config['toc']['delimiter'], $contentsExplode[0]);
 			}
 		}
 		return $output;
@@ -243,9 +251,12 @@ class Tocgen
 	 * @since 3.0.0
 	 */
 
-	protected function _parseSections($contents = '')
+	protected function _parseSections($file = '', $contents = '')
 	{
-		$output = array();
+		$output = array(
+		    'errors' => '',
+		    'tocNew' => ''
+		);
 
 		/* get section matches */
 
@@ -272,6 +283,7 @@ class Tocgen
 			{
 				$sectionValue = trim(str_replace($this->_config['section']['flag'], '', $sectionValue));
 				$sectionRankNew = preg_replace('/[^0-9' . $this->_config['section']['delimiter'] . ']/', '', $sectionValue);
+				$sectionRankOld = '';
 				$sectionRankExplode = explode($this->_config['section']['delimiter'], $sectionRankNew);
 
 				/* collect new toc */
@@ -282,14 +294,14 @@ class Tocgen
 
 				if (version_compare($sectionRankNew, $sectionRankOld, '=='))
 				{
-					$output['error'] .= $this->_config['wording']['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
+					$output['errors'] .= $this->_config['wording']['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
 				}
 
 				/* wrong order */
 
 				else if (version_compare($sectionRankNew, $sectionRankOld, '<'))
 				{
-					$output['error'] .= $this->_config['wording']['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
+					$output['errors'] .= $this->_config['wording']['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
 				}
 
 				/* indent rank */
