@@ -81,7 +81,7 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 	},
 	"wording":
 	{
-		"tocgen": "Tocgen 3.0.0 by Redaxmedia",
+		"tocgen": "Tocgen by Redaxmedia",
 		"noTarget": "File or directory not found",
 		"noSection": "No section found",
 		"noChanges": "No changes were made",
@@ -111,7 +111,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "dev-master"
+		"redaxmedia/tocgen": "3.0.0"
 	}
 }
 </pre>
