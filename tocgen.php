@@ -122,7 +122,23 @@ class Tocgen
 
 	protected function _scanTarget($target = '', $exclude = array())
 	{
-		$directoryArray = scandir($target);
+		/* if file */
+
+		if (is_file($target))
+		{
+			$directoryArray = array(
+				$target
+			);
+			$target = '';
+		}
+
+		/* else if directory */
+
+		else
+		{
+			$directoryArray = scandir($target);
+			$target .= '/';
+		}
 		$directoryArray = array_diff($directoryArray, $exclude);
 
 		/* scan recursive */
@@ -131,7 +147,7 @@ class Tocgen
 		{
 			foreach ($directoryArray as $key => $value)
 			{
-				$targetSub = $target . '/' . $value;
+				$targetSub = $target . $value;
 				if (is_dir($targetSub))
 				{
 					$directoryArray[$key] = $this->_scanTarget($targetSub, $exclude);
@@ -158,7 +174,7 @@ class Tocgen
 
 		/* handle target */
 
-		if (is_array($target))
+		if (is_object($target))
 		{
 			foreach ($target as $file)
 			{

@@ -17,14 +17,14 @@ Single file or directory.
 
 **Config:**
 
-Load config from .tocgen file.
+Load config from another .tocgen (JSON) file.
 
 
 **Options:**
 
 <code>--force</code>, <code>-f</code> - Force table of contents generation
 
-<code>--recursive</code>, <code>-r</code> - Walk target directory recursively
+<code>--recursive</code>, <code>-r</code> - Walk target recursively
 
 <code>--quite</code>, <code>-q</code> - Print nothing inside console
 
@@ -32,7 +32,7 @@ Load config from .tocgen file.
 Config
 ------
 
-Extend your table of contents with *@since*, *@package* and *@author* by using a .tocgen file like this:
+Extend your table of contents with *@since*, *@package* and *@author* by using a .tocgen (JSON) file like this:
 
 <pre>
 {
@@ -65,8 +65,23 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"sass",
 		"scss"
 	],
+	"exclude":
+	[
+		".",
+		"..",
+		".git",
+		".svn"
+	],
+	"notes":
+	{
+		"error": "[1;31m",
+		"success": "[1;32m",
+		"warning": "[1;33m",
+		"info": "[1;36m"
+	},
 	"wording":
 	{
+		"tocgen": "Tocgen 3.0.0 by Redaxmedia",
 		"noTarget": "File or directory not found",
 		"noSection": "No section found",
 		"noChanges": "No changes were made",
@@ -74,14 +89,14 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"wrongOrder": "Wrong order detected",
 		"tocUpdated": "Table of contents updated",
 		"point": ".",
-		"colon": ":"
+		"colon": ":",
+		"indent": "  "
 	},
 	"options":
 	{
 		"force": false,
-		"recursive": false,
-		"quite": false,
-		"log": false
+		"recursive": true,
+		"quite": false
 	}
 }
 </pre>
@@ -96,7 +111,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "2.2.1"
+		"redaxmedia/tocgen": "master"
 	}
 }
 </pre>
@@ -116,12 +131,12 @@ grunt.initConfig(
 	{
 		tocCSS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/tocgen.php css',
+			command: 'php vendor/redaxmedia/tocgen/cli.php css',
 			stdout: true
 		},
 		tocJS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/tocgen.php js',
+			command: 'php vendor/redaxmedia/tocgen/cli.php js',
 			stdout: true
 		}
 	}
