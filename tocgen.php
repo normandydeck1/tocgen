@@ -56,13 +56,14 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param array $argv
+	 * @param string $baseDirectory
 	 */
 
-	public function __construct($argv = array())
+	public function __construct($argv = array(), $baseDirectory = '')
 	{
 		/* call init */
 
-		$this->init($argv);
+		$this->init($argv, $baseDirectory);
 	}
 
 	/**
@@ -71,9 +72,10 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param array $argv
+	 * @param string $baseDirectory
 	 */
 
-	public function init($argv = array())
+	public function init($argv = array(), $baseDirectory = '')
 	{
 		/* handle arguments */
 
@@ -83,7 +85,11 @@ class Tocgen
 		}
 		if (isset($argv[2]) && file_exists($argv[2]))
 		{
-			$this->_paths['config'] = basename($argv[2]);
+			$this->_paths['config'] = $argv[2];
+		}
+		else
+		{
+			$this->_paths['config'] = $baseDirectory . '/' . $this->_paths['config'];
 		}
 
 		/* load config */

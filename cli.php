@@ -3,11 +3,11 @@ error_reporting(0);
 
 /* include file */
 
-$currentDirectory = dirname(__FILE__);
-include_once($currentDirectory . '/tocgen.php');
+$baseDirectory = dirname(__FILE__);
+include_once($baseDirectory . '/tocgen.php');
 
 /* process */
 
-$tocgen = new Tocgen($argv);
+$tocgen = new Tocgen($argv, $baseDirectory);
 echo $tocgen->process();
 ?>
