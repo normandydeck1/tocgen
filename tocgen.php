@@ -158,16 +158,26 @@ class Tocgen
 
 		/* handle target */
 
-		foreach ($target as $file)
+		if (is_array($target))
 		{
-			$extension = pathinfo($file, PATHINFO_EXTENSION);
-
-			/* check extension */
-
-			if (in_array($extension, $this->_config['extensions']))
+			foreach ($target as $file)
 			{
-				$output .= $this->_writeToc($file);
+				$extension = pathinfo($file, PATHINFO_EXTENSION);
+
+				/* check extension */
+
+				if (in_array($extension, $this->_config['extensions']))
+				{
+					$output .= $this->_writeToc($file);
+				}
 			}
+		}
+
+		/* else handle error */
+
+		else
+		{
+			$output .= PHP_EOL . $this->_console($this->_wording['noTarget'], 'error') . PHP_EOL;
 		}
 
 		/* quite option */

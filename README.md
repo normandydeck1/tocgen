@@ -28,8 +28,6 @@ Load config from .tocgen file.
 
 <code>--quite</code>, <code>-q</code> - Print nothing inside console
 
-<code>--log</code>, <code>-l</code> - Write log files
-
 
 Config
 ------
