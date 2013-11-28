@@ -112,17 +112,6 @@ class Tocgen
 	}
 
 	/**
-	 * getTarget
-	 *
-	 * @since 3.0.0
-	 */
-
-	public function getTarget()
-	{
-		return $this->_target;
-	}
-
-	/**
 	 * scanTarget
 	 *
 	 * @since 3.0.0
@@ -164,7 +153,7 @@ class Tocgen
 
 	public function process()
 	{
-		$output = '';
+		$output = PHP_EOL . $this->_console($this->_wording['tocgen'], 'info') . PHP_EOL;
 		$target = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->_target));
 
 		/* handle target */
@@ -180,7 +169,14 @@ class Tocgen
 				$output .= $this->_writeToc($file);
 			}
 		}
-		return $output;
+
+		/* quite option */
+
+		if ($this->_options['quite'] === false)
+		{
+			return $output;
+		}
+
 	}
 
 	/**
@@ -188,24 +184,69 @@ class Tocgen
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param string $file
+	 * @param string $path
 	 */
 
-	protected function _writeToc($file = '')
+	protected function _writeToc($path = '')
 	{
+		$output = '';
+
 		/* parse contents */
 
-		$parseContents = $this->_parseContents($file);
+		$parseContents = $this->_parseContents($path);
 		$contents = $parseContents['contents'];
 		$tocParts = $parseContents['tocParts'];
 
 		/* parse sections */
 
-		$parseSections = $this->_parseSections($file, $contents);
-		$errors = $parseSections['errors'];
+		$parseSections = $this->_parseSections($contents);
+		$notes = array(
+		    'error' => $parseSections['error'],
+		    'success' => array(),
+		    'warning' => array()
+		);
 		$tocNew = $parseSections['tocNew'];
 
-		return $this->_console($file) . PHP_EOL;
+		/* process new toc */
+
+		if ($tocNew)
+		{
+			/* equal toc */
+
+			if ($this->_options['force'] === false && in_array($tocNew, $tocParts))
+			{
+				$notes['warning'][] = $this->_wording['noChanges'];
+			}
+
+			/* else update toc */
+
+			else
+			{
+				$contentsNew = $this->_config['toc']['start'] . $this->_config['toc']['head'] . $tocNew . $this->_config['toc']['foot'] . $this->_config['toc']['end'] . $contents;
+				file_put_contents($path, $contentsNew);
+				$notes['success'][] = $this->_wording['tocUpdated'];
+			}
+		}
+
+		/* else handle error */
+
+		else
+		{
+			$notes['warning'][] = $this->_wording['noSection'];
+		}
+
+		/* handle notes */
+
+		$noteCounter = 1;
+		$output .= PHP_EOL . $path . $this->_wording['colon'] . PHP_EOL;
+		foreach ($notes as $noteKey => $noteValue)
+		{
+			foreach ($noteValue as $noteSubKey => $noteSubValue)
+			{
+				$output .= $this->_wording['indent'] . $this->_console($noteCounter++ . $this->_wording['point'] . ' ' . $noteSubValue, $noteKey) . PHP_EOL;
+			}
+		}
+		return $output;
 	}
 
 	/**
@@ -213,10 +254,10 @@ class Tocgen
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param string $file
+	 * @param string $path
 	 */
 
-	protected function _parseContents($file = '')
+	protected function _parseContents($path = '')
 	{
 		$output = array(
 		    'contents' => '',
@@ -225,7 +266,7 @@ class Tocgen
 
 		/* get contents */
 
-		$output['contents'] = file_get_contents($file);
+		$output['contents'] = file_get_contents($path);
 		$contentsExplode = explode($this->_config['toc']['end'], $output['contents'], 2);
 
 		/* remove present toc */
@@ -249,12 +290,14 @@ class Tocgen
 	 * parseSections
 	 *
 	 * @since 3.0.0
+	 *
+	 * @param string $contents
 	 */
 
-	protected function _parseSections($file = '', $contents = '')
+	protected function _parseSections($contents = '')
 	{
 		$output = array(
-		    'errors' => '',
+		    'error' => array(),
 		    'tocNew' => ''
 		);
 
@@ -283,7 +326,6 @@ class Tocgen
 			{
 				$sectionValue = trim(str_replace($this->_config['section']['flag'], '', $sectionValue));
 				$sectionRankNew = preg_replace('/[^0-9' . $this->_config['section']['delimiter'] . ']/', '', $sectionValue);
-				$sectionRankOld = '';
 				$sectionRankExplode = explode($this->_config['section']['delimiter'], $sectionRankNew);
 
 				/* collect new toc */
@@ -294,14 +336,14 @@ class Tocgen
 
 				if (version_compare($sectionRankNew, $sectionRankOld, '=='))
 				{
-					$output['errors'] .= $this->_config['wording']['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
+					$output['error'][] = $this->_wording['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
 				/* wrong order */
 
 				else if (version_compare($sectionRankNew, $sectionRankOld, '<'))
 				{
-					$output['errors'] .= $this->_config['wording']['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $file . PHP_EOL;
+					$output['error'][] = $this->_wording['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
 				/* indent rank */
@@ -344,9 +386,9 @@ class Tocgen
 
 		if ($operatingSystem == 'linux')
 		{
-			if ($message && key_exists($mode, $this->_config['colors']))
+			if ($message && key_exists($mode, $this->_config['notes']))
 			{
-				$output = chr(27) . $this->_config['colors'][$mode] . $message . chr(27) . '[0m';
+				$output = chr(27) . $this->_config['notes'][$mode] . $message . chr(27) . '[0m';
 			}
 		}
 		return $output;

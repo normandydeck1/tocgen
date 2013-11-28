@@ -35,14 +35,16 @@
 		".git",
 		".svn"
 	],
-	"colors":
+	"notes":
 	{
 		"error": "[1;31m",
 		"success": "[1;32m",
-		"warning": "[1;33m"
+		"warning": "[1;33m",
+		"info": "[1;36m"
 	},
 	"wording":
 	{
+		"tocgen": "Tocgen 3.0.0 by Redaxmedia",
 		"noTarget": "File or directory not found",
 		"noSection": "No section found",
 		"noChanges": "No changes were made",
@@ -50,7 +52,8 @@
 		"wrongOrder": "Wrong order detected",
 		"tocUpdated": "Table of contents updated",
 		"point": ".",
-		"colon": ":"
+		"colon": ":",
+		"indent": "  "
 	},
 	"options":
 	{
