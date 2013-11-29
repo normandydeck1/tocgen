@@ -9,7 +9,7 @@ Tocgen
 API
 ---
 
-Send an <code>$_POST</code> request to api.php.
+Send an <code>POST</code> request to <code>api.php</code>.
 
 
 **$_POST[1]:**
@@ -19,7 +19,7 @@ Single file contents.
 
 **$_POST[2]:**
 
-Config file contents similar to .tocgen.
+Config contents from .tocgen (JSON) file.
 
 
 Console
@@ -81,7 +81,8 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"js",
 		"less",
 		"sass",
-		"scss"
+		"scss",
+		"tmp"
 	],
 	"exclude":
 	[
@@ -129,7 +130,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "3.1.0"
+		"redaxmedia/tocgen": "3.0.0"
 	}
 }
 </pre>

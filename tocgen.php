@@ -233,9 +233,9 @@ class Tocgen
 
 		$parseSections = $this->_parseSections($contents);
 		$notes = array(
-		    'error' => $parseSections['error'],
-		    'success' => array(),
-		    'warning' => array()
+			'error' => $parseSections['error'],
+			'success' => array(),
+			'warning' => array()
 		);
 		$tocNew = $parseSections['tocNew'];
 
@@ -292,8 +292,8 @@ class Tocgen
 	protected function _parseContents($path = '')
 	{
 		$output = array(
-		    'contents' => '',
-		    'tocParts' => ''
+			'contents' => '',
+			'tocParts' => ''
 		);
 
 		/* get contents */
@@ -329,8 +329,8 @@ class Tocgen
 	protected function _parseSections($contents = '')
 	{
 		$output = array(
-		    'error' => array(),
-		    'tocNew' => ''
+			'error' => array(),
+			'tocNew' => ''
 		);
 
 		/* get section matches */
