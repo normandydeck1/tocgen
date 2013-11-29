@@ -9,7 +9,7 @@ Tocgen
 API
 ---
 
-Send an <code>POST</code> request to <code>api.php</code>.
+Send a <code>POST</code> request to <code>api.php</code>.
 
 
 **$_POST[1]:**
@@ -19,13 +19,13 @@ Single file contents.
 
 **$_POST[2]:**
 
-Config contents from .tocgen (JSON) file.
+Config contents from <code>.tocgen</code> (JSON) file.
 
 
 Console
 -------
 
-Run <code>php cli.php [path] [config] [options]</code> from console.
+Run <code>php cli.php {path} {config} {options}</code> from console.
 
 
 **Path:**
@@ -35,7 +35,7 @@ Single file or directory.
 
 **Config:**
 
-Load config from another .tocgen (JSON) file.
+Load config from another <code>.tocgen</code> (JSON) file.
 
 
 **Options:**
@@ -50,7 +50,7 @@ Load config from another .tocgen (JSON) file.
 Config
 ------
 
-Extend your table of contents with *@since*, *@package* and *@author* by using a .tocgen (JSON) file like this:
+Most configuration are stored inside <code>.tocgen</code> (JSON) file.
 
 <pre>
 {
@@ -64,7 +64,7 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"delimiter": " *\r\n",
 		"indent": "   ",
 		"head": "\r\n * @tableofcontents\r\n *\r\n",
-		"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
+		"foot": ""
 	},
 	"section":
 	{
@@ -118,6 +118,12 @@ Extend your table of contents with *@since*, *@package* and *@author* by using a
 		"quite": false
 	}
 }
+</pre>
+
+Extend your table of contents with *@since*, *@package* and *@author* by using <code>foot</code> like:
+
+<pre>
+"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
 </pre>
 
 
@@ -269,4 +275,4 @@ Output file:
 Troubleshooting
 ---------------
 
-Keep in mind that <code>eol</code> inside your .tocgen file equals your IDE's setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
+Keep in mind that <code>eol</code> inside your <code>.tocgen</code> (JSON) file equals your IDE's setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
