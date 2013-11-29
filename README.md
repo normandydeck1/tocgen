@@ -3,6 +3,9 @@ Tocgen
 
 > Generate table of contents from multiple CSS and JS files.
 
+[![Latest Stable Version](https://poser.pugx.org/redaxmedia/redaxscript-third-party/v/stable.png)](https://packagist.org/packages/redaxmedia/redaxscript-third-party)
+[![Total Downloads](https://poser.pugx.org/redaxmedia/redaxscript-third-party/downloads.png)](https://packagist.org/packages/redaxmedia/redaxscript-third-party)
+
 
 Usage
 -----
