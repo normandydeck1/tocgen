@@ -6,9 +6,24 @@ Tocgen
 [![Latest Stable Version](https://poser.pugx.org/redaxmedia/tocgen/v/stable.png)](https://packagist.org/packages/redaxmedia/tocgen)
 [![Total Downloads](https://poser.pugx.org/redaxmedia/tocgen/downloads.png)](https://packagist.org/packages/redaxmedia/tocgen)
 
+API
+---
 
-Usage
------
+Send an <code>$_POST</code> request to api.php.
+
+
+**$_POST[1]:**
+
+Single file contents.
+
+
+**$_POST[2]:**
+
+Config file contents similar to .tocgen.
+
+
+Console
+-------
 
 Run <code>php cli.php [path] [config] [options]</code> from console.
 
@@ -114,7 +129,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "3.0.0"
+		"redaxmedia/tocgen": "3.1.0"
 	}
 }
 </pre>

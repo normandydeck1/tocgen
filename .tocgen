@@ -26,7 +26,8 @@
 		"js",
 		"less",
 		"sass",
-		"scss"
+		"scss",
+		"tmp"
 	],
 	"exclude":
 	[
