@@ -10,10 +10,8 @@ include_once($currentDirectory . '/tocgen.php');
 
 $target = $_POST[1];
 $config = $_POST[2];
-
 $targetFile = $currentDirectory . '/temp/' . sha1($target) . '.tmp';
 $configFile = $currentDirectory . '/temp/' . sha1($config) . '.tmp';
-
 $argv = array(
 	1 => $targetFile,
 	2 => $configFile

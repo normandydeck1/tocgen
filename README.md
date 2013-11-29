@@ -6,6 +6,7 @@ Tocgen
 [![Latest Stable Version](https://poser.pugx.org/redaxmedia/tocgen/v/stable.png)](https://packagist.org/packages/redaxmedia/tocgen)
 [![Total Downloads](https://poser.pugx.org/redaxmedia/tocgen/downloads.png)](https://packagist.org/packages/redaxmedia/tocgen)
 
+
 API
 ---
 
@@ -47,10 +48,23 @@ Load config from another <code>.tocgen</code> (JSON) file.
 <code>--quite</code>, <code>-q</code> - Print nothing inside console
 
 
+Service
+-------
+
+**GUI:**
+
+[http://tocgen.net](http://tocgen.net)
+
+
+**API:**
+
+[http://api.tocgen.net](http://api.tocgen.net)
+
+
 Config
 ------
 
-Most configuration are stored inside <code>.tocgen</code> (JSON) file.
+Configuration are stored inside <code>.tocgen</code> (JSON) file:
 
 <pre>
 {

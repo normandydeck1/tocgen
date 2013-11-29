@@ -1,9 +1,9 @@
 <?php
 error_reporting(0);
+$baseDirectory = dirname(__FILE__);
 
 /* include file */
 
-$baseDirectory = dirname(__FILE__);
 include_once($baseDirectory . '/tocgen.php');
 
 /* process */
