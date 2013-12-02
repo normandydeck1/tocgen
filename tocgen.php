@@ -54,6 +54,13 @@ class Tocgen
 	protected $_options;
 
 	/**
+	 * extensions
+	 * @var object
+	 */
+
+	protected $_extensions;
+
+	/**
 	 * target
 	 * @var object
 	 */
@@ -115,7 +122,7 @@ class Tocgen
 
 			if (is_array($this->_config['exclude']))
 			{
-			$this->_config['exclude'] = array_unique(array_merge($this->_exclude, $this->_config['exclude']));
+				$this->_config['exclude'] = array_unique(array_merge($this->_exclude, $this->_config['exclude']));
 			}
 
 			/* else fallback */
@@ -139,6 +146,7 @@ class Tocgen
 
 			$this->_wording = $this->_config['wording'];
 			$this->_options = $this->_config['options'];
+			$this->_extensions = $this->_config['extensions'];
 
 			/* scan target */
 
@@ -217,7 +225,11 @@ class Tocgen
 
 				/* check extension */
 
-				if (in_array($extension, $this->_config['extensions']))
+				if (!is_array($this->_extensions))
+				{
+					$output .= $this->_writeToc($file);
+				}
+				else if(in_array($extension, $this->_extensions))
 				{
 					$output .= $this->_writeToc($file);
 				}
