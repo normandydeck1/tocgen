@@ -58,7 +58,7 @@ Service
 
 **API:**
 
-[http://api.tocgen.net](http://api.tocgen.net)
+[http://tocgen.net/api.php](http://tocgen.net/api.php)
 
 
 Config

@@ -97,24 +97,29 @@ class Tocgen
 		$this->_config = file_get_contents($this->_paths['config']);
 		$this->_config = json_decode($this->_config, true);
 
-		/* overwrite options */
+		/* config present */
 
-		foreach ($this->_config['options'] as $optionKey => $optionValue)
+		if (is_array($this->_config))
 		{
-			if (in_array('--' . $optionKey, $argv) || in_array('-' . substr($optionKey, 0, 1), $argv))
+			/* overwrite options */
+
+			foreach ($this->_config['options'] as $optionKey => $optionValue)
 			{
-				$this->_config['options'][$optionKey] = true;
+				if (in_array('--' . $optionKey, $argv) || in_array('-' . substr($optionKey, 0, 1), $argv))
+				{
+					$this->_config['options'][$optionKey] = true;
+				}
 			}
+
+			/* create shortcuts */
+
+			$this->_wording = $this->_config['wording'];
+			$this->_options = $this->_config['options'];
+
+			/* scan target */
+
+			$this->_target = $this->_scanTarget($this->_paths['target'], $this->_config['exclude']);
 		}
-
-		/* create shortcuts */
-
-		$this->_wording = $this->_config['wording'];
-		$this->_options = $this->_config['options'];
-
-		/* scan target */
-
-		$this->_target = $this->_scanTarget($this->_paths['target'], $this->_config['exclude']);
 	}
 
 	/**
