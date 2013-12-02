@@ -55,7 +55,7 @@ class Tocgen
 
 	/**
 	 * extensions
-	 * @var object
+	 * @var array
 	 */
 
 	protected $_extensions;
