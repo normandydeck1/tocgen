@@ -23,6 +23,16 @@ class Tocgen
 	);
 
 	/**
+	 * exclude
+	 * @var array
+	 */
+
+	private $_exclude = array(
+		'.',
+		'..'
+	);
+
+	/**
 	 * config
 	 * @var object
 	 */
@@ -101,6 +111,20 @@ class Tocgen
 
 		if (is_array($this->_config))
 		{
+			/* merge exclude */
+
+			if (is_array($this->_config['exclude']))
+			{
+			$this->_config['exclude'] = array_unique(array_merge($this->_exclude, $this->_config['exclude']));
+			}
+
+			/* else fallback */
+
+			else
+			{
+				$this->_config['exclude'] = $this->_exclude;
+			}
+
 			/* overwrite options */
 
 			foreach ($this->_config['options'] as $optionKey => $optionValue)
