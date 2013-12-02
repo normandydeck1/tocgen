@@ -33,6 +33,5 @@ echo file_get_contents($targetFile);
 
 /* unlink files */
 
-unlink($targetFile);
-unlink($configFile);
+array_map('unlink', glob($currentDirectory . '/temp/*.tmp'));
 ?>
