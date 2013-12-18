@@ -153,7 +153,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "3.0.0"
+		"redaxmedia/tocgen": "3.0.1"
 	}
 }
 </pre>
