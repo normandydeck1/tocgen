@@ -45,6 +45,8 @@ Load config from another <code>.tocgen</code> (JSON) file.
 
 <code>--recursive</code>, <code>-r</code> - Walk target recursively
 
+<code>--lint</code>, <code>-l</code> - Lint for outdated table of contents
+
 <code>--quite</code>, <code>-q</code> - Print nothing inside console
 
 
@@ -95,8 +97,7 @@ Configuration are stored inside <code>.tocgen</code> (JSON) file:
 		"js",
 		"less",
 		"sass",
-		"scss",
-		"tmp"
+		"scss"
 	],
 	"exclude":
 	[
@@ -120,6 +121,7 @@ Configuration are stored inside <code>.tocgen</code> (JSON) file:
 		"noChanges": "No changes were made",
 		"duplicateRank": "Duplicate rank detected",
 		"wrongOrder": "Wrong order detected",
+		"tocOutdated": "Table of contents outdated",
 		"tocUpdated": "Table of contents updated",
 		"point": ".",
 		"colon": ":",
@@ -129,6 +131,7 @@ Configuration are stored inside <code>.tocgen</code> (JSON) file:
 	{
 		"force": false,
 		"recursive": true,
+		"lint": false,
 		"quite": false
 	}
 }

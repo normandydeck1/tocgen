@@ -273,6 +273,9 @@ class Tocgen
 		/* parse sections */
 
 		$parseSections = $this->_parseSections($contents);
+
+		/* transport section errors */
+
 		$notes = array(
 			'error' => $parseSections['error'],
 			'success' => array(),
@@ -291,6 +294,13 @@ class Tocgen
 				$notes['warning'][] = $this->_wording['noChanges'];
 			}
 
+			/* lint toc */
+
+			else if ($this->_options['lint'] === true)
+			{
+				$notes['error'][] = $this->_wording['tocOutdated'];
+			}
+
 			/* else update toc */
 
 			else
@@ -301,7 +311,7 @@ class Tocgen
 			}
 		}
 
-		/* else handle error */
+		/* else handle warning */
 
 		else
 		{
