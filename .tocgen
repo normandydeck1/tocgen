@@ -61,6 +61,7 @@
 		"force": false,
 		"recursive": true,
 		"lint": false,
+		"hold": false,
 		"quite": false
 	}
 }

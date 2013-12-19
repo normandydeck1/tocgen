@@ -241,6 +241,7 @@ class Tocgen
 		else
 		{
 			$output .= PHP_EOL . $this->_console($this->_wording['noTarget'], 'error') . PHP_EOL;
+			$this->_hold();
 		}
 
 		/* quite option */
@@ -299,6 +300,7 @@ class Tocgen
 			else if ($this->_options['lint'] === true)
 			{
 				$notes['error'][] = $this->_wording['tocOutdated'];
+				$this->_hold();
 			}
 
 			/* else update toc */
@@ -311,11 +313,12 @@ class Tocgen
 			}
 		}
 
-		/* else handle warning */
+		/* else handle error */
 
 		else
 		{
-			$notes['warning'][] = $this->_wording['noSection'];
+			$notes['error'][] = $this->_wording['noSection'];
+			$this->_hold();
 		}
 
 		/* handle notes */
@@ -423,6 +426,7 @@ class Tocgen
 				if (version_compare($rankNew, $rankOld, '=='))
 				{
 					$output['error'][] = $this->_wording['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
+					$this->_hold();
 				}
 
 				/* wrong order */
@@ -430,6 +434,7 @@ class Tocgen
 				else if (version_compare($rankNew, $rankOld, '<'))
 				{
 					$output['error'][] = $this->_wording['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
+					$this->_hold();
 				}
 
 				/* indent rank */
@@ -482,6 +487,22 @@ class Tocgen
 			}
 		}
 		return $output;
+	}
+
+	/**
+	 * hold
+	 *
+	 * @since 3.0.1
+	 *
+	 * @param string $status
+	 */
+
+	protected function _hold($status = '')
+	{
+		if ($this->_options['hold'] === true)
+		{
+			exit($status);
+		}
 	}
 }
 ?>

@@ -47,6 +47,8 @@ Load config from another <code>.tocgen</code> (JSON) file.
 
 <code>--lint</code>, <code>-l</code> - Lint for outdated table of contents
 
+<code>--hold</code>, <code>-h</code> - Hold on errors
+
 <code>--quite</code>, <code>-q</code> - Print nothing inside console
 
 
@@ -132,6 +134,7 @@ Configuration are stored inside <code>.tocgen</code> (JSON) file:
 		"force": false,
 		"recursive": true,
 		"lint": false,
+		"hold": false,
 		"quite": false
 	}
 }
