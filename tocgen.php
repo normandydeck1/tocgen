@@ -316,14 +316,14 @@ class Tocgen
 		/* handle notes */
 
 		$noteCounter = 1;
-		$output .= PHP_EOL . $path . $this->_wording['colon'] . PHP_EOL;
+		$output .= PHP_EOL . $path . $this->_wording['colon'];
 		if ($this->_options['lint'] === false)
 		{
 			foreach ($notes as $noteKey => $noteValue)
 			{
 				foreach ($noteValue as $noteSubKey => $noteSubValue)
 				{
-					$output .= $this->_wording['indent'] . $this->_console($noteCounter++ . $this->_wording['point'] . ' ' . $noteSubValue, $noteKey) . PHP_EOL;
+					$output .= PHP_EOL . $this->_wording['indent'] . $this->_console($noteCounter++ . $this->_wording['point'] . ' ' . $noteSubValue, $noteKey) . PHP_EOL;
 				}
 			}
 		}
