@@ -240,7 +240,6 @@ class Tocgen
 
 		else
 		{
-			$this->_lintError();
 			$output .= PHP_EOL . $this->_console($this->_wording['noTarget'], 'error') . PHP_EOL;
 		}
 
@@ -300,9 +299,9 @@ class Tocgen
 			else
 			{
 				$this->_lintError();
+				$notes['success'][] = $this->_wording['tocUpdated'];
 				$contentsNew = $this->_config['toc']['start'] . $this->_config['toc']['head'] . $tocNew . $this->_config['toc']['foot'] . $this->_config['toc']['end'] . $contents;
 				file_put_contents($path, $contentsNew);
-				$notes['success'][] = $this->_wording['tocUpdated'];
 			}
 		}
 
@@ -318,11 +317,14 @@ class Tocgen
 
 		$noteCounter = 1;
 		$output .= PHP_EOL . $path . $this->_wording['colon'] . PHP_EOL;
-		foreach ($notes as $noteKey => $noteValue)
+		if ($this->_options['lint'] === false)
 		{
-			foreach ($noteValue as $noteSubKey => $noteSubValue)
+			foreach ($notes as $noteKey => $noteValue)
 			{
-				$output .= $this->_wording['indent'] . $this->_console($noteCounter++ . $this->_wording['point'] . ' ' . $noteSubValue, $noteKey) . PHP_EOL;
+				foreach ($noteValue as $noteSubKey => $noteSubValue)
+				{
+					$output .= $this->_wording['indent'] . $this->_console($noteCounter++ . $this->_wording['point'] . ' ' . $noteSubValue, $noteKey) . PHP_EOL;
+				}
 			}
 		}
 		return $output;
