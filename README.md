@@ -173,12 +173,23 @@ grunt.initConfig(
 		tocCSS:
 		{
 			command: 'php vendor/redaxmedia/tocgen/cli.php css',
-			stdout: true
 		},
 		tocJS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/cli.php js',
-			stdout: true
+			command: 'php vendor/redaxmedia/tocgen/cli.php js'
+		},
+		tocLintCSS:
+		{
+			command: 'php vendor/redaxmedia/tocgen/cli.php css -l',
+		},
+		tocLintJS:
+		{
+			command: 'php vendor/redaxmedia/tocgen/cli.php js -l'
+		},
+ 		options:
+		{
+			stdout: true,
+			failOnError: true
 		}
 	}
 }
@@ -189,12 +200,19 @@ grunt.loadNpmTasks('grunt-shell');
 
 /* register tasks */
 
+grunt.registerTask('toclint',
+[
+	'shell:tocLintCSS',
+	'shell:tocLintJS'
+]);
 grunt.registerTask('toc',
 [
 	'shell:tocCSS',
 	'shell:tocJS'
 ]);
 </pre>
+
+This <code>toclint</code> task works perfect with Travis CI and other continous integration tools.
 
 
 Example
