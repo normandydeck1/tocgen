@@ -240,8 +240,8 @@ class Tocgen
 
 		else
 		{
+			$this->_lintError();
 			$output .= PHP_EOL . $this->_console($this->_wording['noTarget'], 'error') . PHP_EOL;
-			$this->_hold();
 		}
 
 		/* quite option */
@@ -295,18 +295,11 @@ class Tocgen
 				$notes['warning'][] = $this->_wording['noChanges'];
 			}
 
-			/* lint toc */
-
-			else if ($this->_options['lint'] === true)
-			{
-				$notes['error'][] = $this->_wording['tocOutdated'];
-				$this->_hold();
-			}
-
-			/* else update toc */
+			/* write toc */
 
 			else
 			{
+				$this->_lintError();
 				$contentsNew = $this->_config['toc']['start'] . $this->_config['toc']['head'] . $tocNew . $this->_config['toc']['foot'] . $this->_config['toc']['end'] . $contents;
 				file_put_contents($path, $contentsNew);
 				$notes['success'][] = $this->_wording['tocUpdated'];
@@ -317,8 +310,8 @@ class Tocgen
 
 		else
 		{
+			$this->_lintError();
 			$notes['error'][] = $this->_wording['noSection'];
-			$this->_hold();
 		}
 
 		/* handle notes */
@@ -425,16 +418,16 @@ class Tocgen
 
 				if (version_compare($rankNew, $rankOld, '=='))
 				{
+					$this->_lintError();
 					$output['error'][] = $this->_wording['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
-					$this->_hold();
 				}
 
 				/* wrong order */
 
 				else if (version_compare($rankNew, $rankOld, '<'))
 				{
+					$this->_lintError();
 					$output['error'][] = $this->_wording['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
-					$this->_hold();
 				}
 
 				/* indent rank */
@@ -464,6 +457,22 @@ class Tocgen
 	}
 
 	/**
+	 * lint error
+	 *
+	 * @since 3.0.1
+	 *
+	 * @param string $message
+	 */
+
+	protected function _lintError($message = '')
+	{
+		if ($this->_options['lint'] === true)
+		{
+			exit($message);
+		}
+	}
+
+	/**
 	 * console
 	 *
 	 * @since 3.0.0
@@ -487,22 +496,6 @@ class Tocgen
 			}
 		}
 		return $output;
-	}
-
-	/**
-	 * hold
-	 *
-	 * @since 3.0.1
-	 *
-	 * @param string $status
-	 */
-
-	protected function _hold($status = '')
-	{
-		if ($this->_options['hold'] === true)
-		{
-			exit($status);
-		}
 	}
 }
 ?>

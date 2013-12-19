@@ -50,7 +50,6 @@
 		"noChanges": "No changes were made",
 		"duplicateRank": "Duplicate rank detected",
 		"wrongOrder": "Wrong order detected",
-		"tocOutdated": "Table of contents outdated",
 		"tocUpdated": "Table of contents updated",
 		"point": ".",
 		"colon": ":",
@@ -61,7 +60,6 @@
 		"force": false,
 		"recursive": true,
 		"lint": false,
-		"hold": false,
 		"quite": false
 	}
 }
