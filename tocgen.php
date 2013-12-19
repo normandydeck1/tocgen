@@ -298,7 +298,7 @@ class Tocgen
 
 			else
 			{
-				$this->_lintError(1);
+				$this->_lintExit(1);
 				$notes['success'][] = $this->_wording['tocUpdated'];
 				$contentsNew = $this->_config['toc']['start'] . $this->_config['toc']['head'] . $tocNew . $this->_config['toc']['foot'] . $this->_config['toc']['end'] . $contents;
 				file_put_contents($path, $contentsNew);
@@ -309,7 +309,7 @@ class Tocgen
 
 		else
 		{
-			$this->_lintError(1);
+			$this->_lintExit(1);
 			$notes['error'][] = $this->_wording['noSection'];
 		}
 
@@ -420,7 +420,7 @@ class Tocgen
 
 				if (version_compare($rankNew, $rankOld, '=='))
 				{
-					$this->_lintError(1);
+					$this->_lintExit(1);
 					$output['error'][] = $this->_wording['duplicateRank'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
@@ -428,7 +428,7 @@ class Tocgen
 
 				else if (version_compare($rankNew, $rankOld, '<'))
 				{
-					$this->_lintError(1);
+					$this->_lintExit(1);
 					$output['error'][] = $this->_wording['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
@@ -459,18 +459,18 @@ class Tocgen
 	}
 
 	/**
-	 * lint error
+	 * lint exit
 	 *
 	 * @since 3.0.1
 	 *
-	 * @param string $message
+	 * @param string $status
 	 */
 
-	protected function _lintError($message = '')
+	protected function _lintExit($status = '')
 	{
 		if ($this->_options['lint'] === true)
 		{
-			exit($message);
+			exit($status);
 		}
 	}
 
