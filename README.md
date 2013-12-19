@@ -212,7 +212,7 @@ grunt.registerTask('toc',
 ]);
 </pre>
 
-This <code>toclint</code> task works perfect with Travis CI and other continous integration tools.
+Task <code>toclint</code> returns <code>exit</code> on errors and works perfect with [Travis CI](https://travis-ci.org) and other continous integration tools.
 
 
 Example
