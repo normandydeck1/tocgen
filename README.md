@@ -3,6 +3,7 @@ Tocgen
 
 > Generate table of contents from multiple CSS and JS files.
 
+[![Dependency Status](https://www.versioneye.com/php/redaxmedia:tocgen/dev-master/badge.png)](https://www.versioneye.com/php/redaxmedia:tocgen/dev-master)
 [![Latest Stable Version](https://poser.pugx.org/redaxmedia/tocgen/v/stable.png)](https://packagist.org/packages/redaxmedia/tocgen)
 [![Total Downloads](https://poser.pugx.org/redaxmedia/tocgen/downloads.png)](https://packagist.org/packages/redaxmedia/tocgen)
 
@@ -173,12 +174,23 @@ grunt.initConfig(
 		tocCSS:
 		{
 			command: 'php vendor/redaxmedia/tocgen/cli.php css',
-			stdout: true
 		},
 		tocJS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/cli.php js',
-			stdout: true
+			command: 'php vendor/redaxmedia/tocgen/cli.php js'
+		},
+		tocLintCSS:
+		{
+			command: 'php vendor/redaxmedia/tocgen/cli.php css -l',
+		},
+		tocLintJS:
+		{
+			command: 'php vendor/redaxmedia/tocgen/cli.php js -l'
+		},
+ 		options:
+		{
+			stdout: true,
+			failOnError: true
 		}
 	}
 }
@@ -189,12 +201,19 @@ grunt.loadNpmTasks('grunt-shell');
 
 /* register tasks */
 
+grunt.registerTask('toclint',
+[
+	'shell:tocLintCSS',
+	'shell:tocLintJS'
+]);
 grunt.registerTask('toc',
 [
 	'shell:tocCSS',
 	'shell:tocJS'
 ]);
 </pre>
+
+Task <code>toclint</code> returns <code>exit</code> on errors and works perfect with [Travis CI](https://travis-ci.org) and other continous integration tools.
 
 
 Example
