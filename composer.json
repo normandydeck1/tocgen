@@ -2,6 +2,7 @@
 	"name": "redaxmedia/tocgen",
 	"description": "Generate table of contents from multiple CSS and JS files",
 	"version": "3.0.1",
+	"homepage": "http://tocgen.net",
 	"licence": "GPL-3.0",
 	"require":
 	{
