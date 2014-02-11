@@ -14,6 +14,7 @@ class Tocgen
 {
 	/**
 	 * paths
+	 *
 	 * @var array
 	 */
 
@@ -24,6 +25,7 @@ class Tocgen
 
 	/**
 	 * exclude
+	 *
 	 * @var array
 	 */
 
@@ -34,6 +36,7 @@ class Tocgen
 
 	/**
 	 * config
+	 *
 	 * @var object
 	 */
 
@@ -41,6 +44,7 @@ class Tocgen
 
 	/**
 	 * wording
+	 *
 	 * @var array
 	 */
 
@@ -48,6 +52,7 @@ class Tocgen
 
 	/**
 	 * options
+	 *
 	 * @var array
 	 */
 
@@ -55,6 +60,7 @@ class Tocgen
 
 	/**
 	 * extensions
+	 *
 	 * @var array
 	 */
 
@@ -62,6 +68,7 @@ class Tocgen
 
 	/**
 	 * target
+	 *
 	 * @var object
 	 */
 
@@ -76,7 +83,7 @@ class Tocgen
 	 * @param string $baseDirectory
 	 */
 
-	public function __construct($argv = array(), $baseDirectory = '')
+	public function __construct($argv = array(), $baseDirectory = null)
 	{
 		/* call init */
 
@@ -92,7 +99,7 @@ class Tocgen
 	 * @param string $baseDirectory
 	 */
 
-	public function init($argv = array(), $baseDirectory = '')
+	public function init($argv = array(), $baseDirectory = null)
 	{
 		/* handle arguments */
 
@@ -163,7 +170,7 @@ class Tocgen
 	 * @param array $exclude
 	 */
 
-	protected function _scanTarget($target = '', $exclude = array())
+	protected function _scanTarget($target = null, $exclude = array())
 	{
 		/* if file */
 
@@ -260,7 +267,7 @@ class Tocgen
 	 * @param string $path
 	 */
 
-	protected function _writeToc($path = '')
+	protected function _writeToc($path = null)
 	{
 		$output = '';
 
@@ -338,7 +345,7 @@ class Tocgen
 	 * @param string $path
 	 */
 
-	protected function _parseContents($path = '')
+	protected function _parseContents($path = null)
 	{
 		$output = array(
 			'contents' => '',
@@ -375,7 +382,7 @@ class Tocgen
 	 * @param string $contents
 	 */
 
-	protected function _parseSections($contents = '')
+	protected function _parseSections($contents = null)
 	{
 		$output = array(
 			'error' => array(),
@@ -466,7 +473,7 @@ class Tocgen
 	 * @param string $status
 	 */
 
-	protected function _lintExit($status = '')
+	protected function _lintExit($status = null)
 	{
 		if ($this->_options['lint'] === true)
 		{
@@ -483,14 +490,14 @@ class Tocgen
 	 * @param string $mode
 	 */
 
-	protected function _console($message = '', $mode = 'success')
+	protected function _console($message = null, $mode = 'success')
 	{
 		$output = $message;
 		$operatingSystem = strtolower(php_uname('s'));
 
 		/* linux is present */
 
-		if ($operatingSystem == 'linux')
+		if ($operatingSystem === 'linux')
 		{
 			if ($message && key_exists($mode, $this->_config['notes']))
 			{
