@@ -24,8 +24,8 @@ Single file contents.
 Config from <code>.tocgen</code> (JSON) file.
 
 
-Console
--------
+CLI
+---
 
 Run <code>php cli.php {path} {config} {options}</code> from console.
 
@@ -64,7 +64,7 @@ Service
 [http://tocgen.net/api.php](http://tocgen.net/api.php)
 
 
-**Request the API using AJAX:**
+Request the API using AJAX:
 
 <pre>
 $.ajax(
