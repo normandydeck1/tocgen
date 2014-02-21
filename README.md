@@ -21,7 +21,7 @@ Single file contents.
 
 **$_POST[2]:**
 
-Config contents from <code>.tocgen</code> (JSON) file.
+Config from <code>.tocgen</code> (JSON) file.
 
 
 Console
@@ -62,6 +62,29 @@ Service
 **API:**
 
 [http://tocgen.net/api.php](http://tocgen.net/api.php)
+
+
+**Request the API using AJAX:**
+
+<pre>
+$.ajax(
+{
+	type: 'POST',
+	url: 'api.php',
+	dataType: 'text',
+	data:
+	{
+		1: input.val(),
+		2: config.val()
+	},
+	success: function (data)
+	{
+		output.val(data);
+	}
+});
+</pre>
+
+See how the magic under [http://tocgen.net](http://tocgen.net) is working: [http://tocgen.net/scripts/tocgen.js](http://tocgen.net/scripts/tocgen.js)
 
 
 Config
