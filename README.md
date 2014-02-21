@@ -140,7 +140,20 @@ Configuration are stored inside <code>.tocgen</code> (JSON) file:
 Extend your table of contents with *@since*, *@package* and *@author* by using <code>foot</code> like:
 
 <pre>
-"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
+"toc":
+{
+	"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
+}
+</pre>
+
+
+Customize your section <code>pattern</code> to handle multiple lines:
+
+<pre>
+"section":
+{
+	"pattern": "/\\/\\*([\\s\\S]*?)([\\r\\n])|\\*\\//"
+}
 </pre>
 
 
