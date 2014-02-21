@@ -69,9 +69,8 @@ Service
 <pre>
 $.ajax(
 {
-	type: 'POST',
 	url: 'api.php',
-	dataType: 'text',
+	type: 'post',
 	data:
 	{
 		1: input.val(),
