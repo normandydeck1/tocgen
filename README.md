@@ -6,6 +6,7 @@ Tocgen
 [![Dependency Status](https://www.versioneye.com/user/projects/53110552ec13753a90000477/badge.png)](https://www.versioneye.com/user/projects/53110552ec13753a90000477)
 [![Latest Stable Version](https://poser.pugx.org/redaxmedia/tocgen/v/stable.png)](https://packagist.org/packages/redaxmedia/tocgen)
 [![Total Downloads](https://poser.pugx.org/redaxmedia/tocgen/downloads.png)](https://packagist.org/packages/redaxmedia/tocgen)
+[![License](https://poser.pugx.org/redaxmedia/tocgen/license.png)](https://packagist.org/packages/redaxmedia/tocgen)
 
 
 API
