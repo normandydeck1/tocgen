@@ -168,6 +168,7 @@ class Tocgen
 	 *
 	 * @param string $target
 	 * @param array $exclude
+	 * @return array
 	 */
 
 	protected function _scanTarget($target = null, $exclude = array())
@@ -256,7 +257,6 @@ class Tocgen
 		{
 			return $output;
 		}
-
 	}
 
 	/**
@@ -265,6 +265,7 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param string $path
+	 * @return string
 	 */
 
 	protected function _writeToc($path = null)
@@ -328,7 +329,7 @@ class Tocgen
 		{
 			foreach ($notes as $noteKey => $noteValue)
 			{
-				foreach ($noteValue as $noteSubKey => $noteSubValue)
+				foreach ($noteValue as $noteSubValue)
 				{
 					$output .= PHP_EOL . $this->_wording['indent'] . $this->_console($noteCounter++ . $this->_wording['point'] . ' ' . $noteSubValue, $noteKey) . PHP_EOL;
 				}
@@ -343,6 +344,7 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param string $path
+	 * @return array
 	 */
 
 	protected function _parseContents($path = null)
@@ -380,6 +382,7 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param string $contents
+	 * @return array
 	 */
 
 	protected function _parseSections($contents = null)
@@ -488,6 +491,7 @@ class Tocgen
 	 *
 	 * @param string $message
 	 * @param string $mode
+	 * @return null|string
 	 */
 
 	protected function _console($message = null, $mode = 'success')
