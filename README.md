@@ -22,7 +22,7 @@ Single file contents.
 
 **$_POST[2]:**
 
-Config from <code>.tocgen</code> (JSON) file.
+Config from <code>.tocgen</code> file.
 
 
 CLI
@@ -33,7 +33,7 @@ Run <code>php cli.php {path} {config} {options}</code> from console.
 
 **Example:**
 
-Run <code>php vendor/redaxmedia/tocgen/cli.php templates .tocgen</code> to walk <code>templates</code> recursively with your <code>.tocgen</code> (JSON) file.
+Run <code>php vendor/redaxmedia/tocgen/cli.php templates .tocgen --recursive</code> to walk <code>templates</code> recursively with your <code>.tocgen</code> file.
 
 
 **Path:**
@@ -43,7 +43,7 @@ Single file or directory.
 
 **Config:**
 
-Load config from another <code>.tocgen</code> (JSON) file.
+Load config from another <code>.tocgen</code> file.
 
 
 **Options:**
@@ -70,7 +70,7 @@ Service
 [http://tocgen.net/api.php](http://tocgen.net/api.php)
 
 
-**Example**
+**Example:**
 
 <pre>
 $.ajax(
@@ -93,7 +93,7 @@ $.ajax(
 Config
 ------
 
-Configuration are stored inside <code>.tocgen</code> (JSON) file:
+Configuration are stored inside <code>.tocgen</code> file:
 
 <pre>
 {
@@ -163,7 +163,11 @@ Configuration are stored inside <code>.tocgen</code> (JSON) file:
 }
 </pre>
 
-Extend your table of contents with *@since*, *@package* and *@author* by using <code>foot</code> like:
+
+Extend
+------
+
+Extend your table of contents with <code>@since</code>, <code>@package</code> and <code>@author</code> by using <code>foot</code> like:
 
 <pre>
 "toc":
@@ -349,4 +353,4 @@ Output file:
 Troubleshooting
 ---------------
 
-Keep in mind that <code>eol</code> inside your <code>.tocgen</code> (JSON) file equals your IDE's setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
+Keep in mind that <code>eol</code> inside your <code>.tocgen</code> file equals your IDE's setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
