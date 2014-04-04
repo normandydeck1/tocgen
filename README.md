@@ -31,6 +31,11 @@ CLI
 Run <code>php cli.php {path} {config} {options}</code> from console.
 
 
+**Example:**
+
+Run <code>php vendor/redaxmedia/tocgen/cli.php templates .tocgen</code> to walk <code>templates</code> recursively with your <code>.tocgen</code> (JSON) file.
+
+
 **Path:**
 
 Single file or directory.
@@ -65,7 +70,7 @@ Service
 [http://tocgen.net/api.php](http://tocgen.net/api.php)
 
 
-Request the API using AJAX:
+**Example**
 
 <pre>
 $.ajax(
@@ -83,8 +88,6 @@ $.ajax(
 	}
 });
 </pre>
-
-See working example under: [http://tocgen.net/scripts/tocgen.js](http://tocgen.net/scripts/tocgen.js)
 
 
 Config
