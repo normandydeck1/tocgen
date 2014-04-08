@@ -163,12 +163,26 @@ Configuration are stored inside <code>.tocgen</code> file:
 }
 </pre>
 
-Extend your foot with <code>@since</code>, <code>@package</code> and <code>@author</code> annotations:
+
+Extend
+------
+
+Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> annotations:
 
 <pre>
 "toc":
 {
 	"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
+}
+</pre>
+
+Section pattern to handle multiple lines:
+
+<pre>
+"section":
+{
+
+	"pattern": "/\\/\\*([\\s\\S]*?)([\\r\\n])|\\*\\//"
 }
 </pre>
 
