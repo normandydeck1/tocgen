@@ -181,7 +181,6 @@ Section pattern to handle multiple lines:
 <pre>
 "section":
 {
-
 	"pattern": "/\\/\\*([\\s\\S]*?)([\\r\\n])|\\*\\//"
 }
 </pre>
