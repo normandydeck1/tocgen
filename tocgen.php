@@ -144,13 +144,11 @@ class Tocgen
 		{
 			foreach ($target as $file)
 			{
-				$extension = pathinfo($file, PATHINFO_EXTENSION);
-
 				/* extension and exclude */
 
-				if(in_array($extension, $this->_config['extensions']) && !in_array($file, $this->_config['exclude']))
+				if(in_array($file->getExtension(), $this->_config['extensions']) && !in_array($file, $this->_config['exclude']))
 				{
-					$output .= $this->_writeToc($file);
+					$output .= $this->_writeToc($file->getPathname());
 				}
 			}
 		}
@@ -164,7 +162,7 @@ class Tocgen
 
 		/* quite option */
 
-		if ($this->_options['quite'] === false)
+		if ($this->_options['quite'] === true)
 		{
 			$output = null;
 		}

@@ -174,7 +174,7 @@ grunt.initConfig(
 		{
 			command: 'sh vendor/bin/tocgen.sh css && sh vendor/bin/tocgen.sh js',
 		},
-		tocLint:
+		toclint:
 		{
 			command: 'sh vendor/bin/tocgen.sh css -l && sh vendor/bin/tocgen.sh js -l',
 		},
@@ -194,7 +194,7 @@ grunt.loadNpmTasks('grunt-shell');
 
 grunt.registerTask('toclint',
 [
-	'shell:tocLint'
+	'shell:toclint'
 ]);
 grunt.registerTask('toc',
 [
