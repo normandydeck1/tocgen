@@ -28,12 +28,12 @@ Config from <code>.tocgen</code> file.
 CLI
 ---
 
-Run <code>php cli.php {path} {config} {options}</code> from console.
+Run <code>sh vendor/bin/tocgen.sh {path} {config} {options}</code> from console. The bash redirects to the <code>cli.php</php> file.
 
 
 **Example:**
 
-Run <code>php vendor/redaxmedia/tocgen/cli.php templates .tocgen --recursive</code> to walk <code>templates</code> recursively with your <code>.tocgen</code> file.
+Run <code>sh vendor/bin/tocgen.sh templates .tocgen --recursive</code> to walk <code>templates</code> recursively with your <code>.tocgen</code> file.
 
 
 **Path:**
@@ -172,19 +172,19 @@ grunt.initConfig(
 	{
 		tocCSS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/cli.php css',
+			command: 'sh vendor/bin/tocgen.sh css',
 		},
 		tocJS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/cli.php js'
+			command: 'sh vendor/bin/tocgen.sh js'
 		},
 		tocLintCSS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/cli.php css -l',
+			command: 'sh vendor/bin/tocgen.sh css -l',
 		},
 		tocLintJS:
 		{
-			command: 'php vendor/redaxmedia/tocgen/cli.php js -l'
+			command: 'sh vendor/bin/tocgen.sh js -l'
 		},
  		options:
 		{
