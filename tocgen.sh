@@ -1,3 +1,3 @@
 #!/bin/bash
 
-php cli.php $@
+php vendor/redaxmedia/tocgen/cli.php $@
