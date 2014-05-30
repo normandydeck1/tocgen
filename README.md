@@ -218,6 +218,5 @@ Changelog
 
 - Switched from Windows to Unix EOL
 - Method <code>_scanTarget</code> was replace with the native <code>DirectoryIterator</code>
-- Replaced method <code>_scanTarget</code> with native directory iterator
-- Introduced <code>vendor/bin/tocgen.sh</code> that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
-- Recursively replace parts of the default with your <code>.tocgen</code> file
+- Introduced <code>vendor/bin/tocgen.sh</code> that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code>
+- Recursively replace items of the default <code>.tocgen</code> with your <code>.tocgen</code> file
