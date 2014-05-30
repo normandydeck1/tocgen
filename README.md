@@ -133,7 +133,7 @@ Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> an
 }
 </pre>
 
-Pattern to handle sections with multiple lines:
+Alternative pattern to handle sections with multiple lines:
 
 <pre>
 "section":
@@ -161,7 +161,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 Grunt
 -----
 
-How to implement Tocgen into [gruntfile.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extention:
+How to implement Tocgen into [gruntfile.js](https://github.com/gruntjs/grunt) using the [grunt-shell](https://github.com/sindresorhus/grunt-shell) extension:
 
 <pre>
 /* config grunt */
@@ -170,21 +170,13 @@ grunt.initConfig(
 {
 	shell:
 	{
-		tocCSS:
+		toc:
 		{
-			command: 'sh vendor/bin/tocgen.sh css',
+			command: 'sh vendor/bin/tocgen.sh css && sh vendor/bin/tocgen.sh js',
 		},
-		tocJS:
+		tocLint:
 		{
-			command: 'sh vendor/bin/tocgen.sh js'
-		},
-		tocLintCSS:
-		{
-			command: 'sh vendor/bin/tocgen.sh css -l',
-		},
-		tocLintJS:
-		{
-			command: 'sh vendor/bin/tocgen.sh js -l'
+			command: 'sh vendor/bin/tocgen.sh css -l && sh vendor/bin/tocgen.sh js -l',
 		},
  		options:
 		{
@@ -202,13 +194,11 @@ grunt.loadNpmTasks('grunt-shell');
 
 grunt.registerTask('toclint',
 [
-	'shell:tocLintCSS',
-	'shell:tocLintJS'
+	'shell:tocLint'
 ]);
 grunt.registerTask('toc',
 [
-	'shell:tocCSS',
-	'shell:tocJS'
+	'shell:toc'
 ]);
 </pre>
 
@@ -227,5 +217,5 @@ Changelog
 **4.0.0**
 
 - Replaced method <code>_scanTarget</code> with native directory iterator
-- Introduced vendor/bin/tocgen.sh that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
-- Recursively replace parts of the default config with your <code>.tocgen</code> file
+- Introduced <code>vendor/bin/tocgen.sh</code> that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
+- Recursively replace parts of the default with your <code>.tocgen</code> file
