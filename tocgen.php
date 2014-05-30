@@ -6,7 +6,6 @@
  * @since 4.0.0
  *
  * @package Tocgen
- * @category Tocgen
  * @author Henry Ruhs
  */
 
@@ -415,7 +414,7 @@ class Tocgen
 
 		if ($operatingSystem === 'linux')
 		{
-			if ($message && key_exists($mode, $this->_config['notes']))
+			if ($message && array_key_exists($mode, $this->_config['notes']))
 			{
 				$output = chr(27) . $this->_config['notes'][$mode] . $message . chr(27) . '[0m';
 			}
