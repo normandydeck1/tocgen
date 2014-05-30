@@ -133,7 +133,7 @@ Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> an
 }
 </pre>
 
-Pattern to handle sections with multiple lines:
+Alternative pattern to handle sections with multiple lines:
 
 <pre>
 "section":
@@ -216,6 +216,8 @@ Changelog
 
 **4.0.0**
 
+- Switched from Windows to Unix EOL
 - Method <code>_scanTarget</code> was replace with the native <code>DirectoryIterator</code>
+- Replaced method <code>_scanTarget</code> with native directory iterator
 - Introduced <code>vendor/bin/tocgen.sh</code> that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
 - Recursively replace parts of the default with your <code>.tocgen</code> file
