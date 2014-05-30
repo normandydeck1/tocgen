@@ -121,8 +121,8 @@ Configuration are stored inside <code>.tocgen</code> file:
 </pre>
 
 
-Extend
-------
+Replace
+-------
 
 Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> annotations:
 
@@ -133,7 +133,7 @@ Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> an
 }
 </pre>
 
-Alternative pattern to handle sections with multiple lines:
+Pattern to handle sections with multiple lines:
 
 <pre>
 "section":
@@ -216,6 +216,6 @@ Changelog
 
 **4.0.0**
 
-- Replaced method <code>_scanTarget</code> with native directory iterator
+- Method <code>_scanTarget</code> was replace with the native <code>DirectoryIterator</code>
 - Introduced <code>vendor/bin/tocgen.sh</code> that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
 - Recursively replace parts of the default with your <code>.tocgen</code> file
