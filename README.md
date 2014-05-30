@@ -214,8 +214,10 @@ Keep in mind that <code>EOL</code> inside your <code>.tocgen</code> file equals 
 Changelog
 ---------
 
+
 **4.0.0**
 
+- Switch from Windows to Unix EOL
 - Replaced method <code>_scanTarget</code> with native directory iterator
 - Introduced <code>vendor/bin/tocgen.sh</code> that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
 - Recursively replace parts of the default with your <code>.tocgen</code> file
