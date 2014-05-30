@@ -73,6 +73,8 @@ class Tocgen
 
 	public function init($argv = array(), $baseDirectory = null)
 	{
+		$config = '';
+
 		/* handle first argument */
 
 		if (isset($argv[1]) && file_exists($argv[1]))
@@ -304,6 +306,7 @@ class Tocgen
 			'error' => array(),
 			'tocNew' => ''
 		);
+		$rankOld = '';
 
 		/* get section matches */
 
