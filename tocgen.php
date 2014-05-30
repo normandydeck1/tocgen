@@ -32,25 +32,6 @@ class Tocgen
 	private $_config;
 
 	/**
-	 * extensions
-	 *
-	 * @var array
-	 */
-
-	protected $_extensions;
-
-	/**
-	 * exclude
-	 *
-	 * @var array
-	 */
-
-	private $_exclude = array(
-		'.',
-		'..'
-	);
-
-	/**
 	 * wording
 	 *
 	 * @var object
@@ -101,25 +82,25 @@ class Tocgen
 
 	public function init($argv = array(), $baseDirectory = null)
 	{
-		/* handle arguments */
+		/* handle first argument */
 
 		if (isset($argv[1]) && file_exists($argv[1]))
 		{
 			$this->_paths['target'] = realpath($argv[1]);
 		}
+
+		/* handle second argument */
+
 		if (isset($argv[2]) && file_exists($argv[2]))
 		{
-			$this->_paths['config'] = $argv[2];
-		}
-		else
-		{
-			$this->_paths['config'] = $baseDirectory . '/' . $this->_paths['config'];
+			$contents = file_get_contents($argv[2]);
+			$config = json_decode($contents, true);
 		}
 
 		/* load config */
 
-		$contents = file_get_contents($this->_paths['config']);
-		$config = json_decode($contents, true);
+		$this->_config = file_get_contents($baseDirectory . '/' . $this->_paths['config']);
+		$this->_config = json_decode($this->_config, true);
 
 		/* merge config */
 
@@ -140,8 +121,6 @@ class Tocgen
 
 		/* create shortcuts */
 
-		$this->_extensions = $this->_config['extensions'];
-		$this->_exclude = $this->_config['exclude'];
 		$this->_wording = $this->_config['wording'];
 		$this->_options = $this->_config['options'];
 
@@ -223,11 +202,11 @@ class Tocgen
 
 				/* check extension */
 
-				if (!is_array($this->_extensions))
+				if (!is_array($this->_config['extensions']))
 				{
 					$output .= $this->_writeToc($file);
 				}
-				else if(in_array($extension, $this->_extensions))
+				else if(in_array($extension, $this->_config['extensions']))
 				{
 					$output .= $this->_writeToc($file);
 				}
