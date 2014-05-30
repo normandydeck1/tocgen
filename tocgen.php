@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Tocgen
+ * parent class to generate table of contents from multiple css and js files
  *
- * @since 3.0.0
+ * @since 4.0.0
  *
  * @package Tocgen
  * @category Tocgen
@@ -48,17 +48,9 @@ class Tocgen
 	protected $_options;
 
 	/**
-	 * target
+	 * constructor of the class
 	 *
-	 * @var array
-	 */
-
-	private $_target;
-
-	/**
-	 * construct
-	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 *
 	 * @param array $argv
 	 * @param string $baseDirectory
@@ -72,9 +64,9 @@ class Tocgen
 	}
 
 	/**
-	 * init
+	 * init the class
 	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 *
 	 * @param array $argv
 	 * @param string $baseDirectory
@@ -123,74 +115,25 @@ class Tocgen
 
 		$this->_wording = $this->_config['wording'];
 		$this->_options = $this->_config['options'];
-
-		/* scan target */
-
-		$this->_target = $this->_scanTarget($this->_paths['target'], $this->_config['exclude']);
 	}
 
 	/**
-	 * scanTarget
+	 * process the target
 	 *
-	 * @since 3.0.0
-	 *
-	 * @param string $target
-	 * @param array $exclude
-	 *
-	 * @return array
-	 */
-
-	protected function _scanTarget($target = null, $exclude = array())
-	{
-		/* if file */
-
-		if (is_file($target))
-		{
-			$directoryArray = array(
-				$target
-			);
-			$target = '';
-		}
-
-		/* else if directory */
-
-		else
-		{
-			$directoryArray = scandir($target);
-			$target .= '/';
-		}
-		$directoryArray = array_diff($directoryArray, $exclude);
-
-		/* scan recursive */
-
-		if ($this->_options['recursive'] === true)
-		{
-			foreach ($directoryArray as $key => $value)
-			{
-				$targetSub = $target . $value;
-				if (is_dir($targetSub))
-				{
-					$directoryArray[$key] = $this->_scanTarget($targetSub, $exclude);
-				}
-				else
-				{
-					$directoryArray[$key] = $targetSub;
-				}
-			}
-		}
-		return $directoryArray;
-	}
-
-	/**
-	 * process
-	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 */
 
 	public function process()
 	{
 		$output = PHP_EOL . $this->_console($this->_wording['tocgen'], 'info') . PHP_EOL;
-		$target = new RecursiveIteratorIterator(new RecursiveArrayIterator($this->_target));
+		if ($this->_options['recursive'] === true)
+		{
+			$target = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->_paths['target']));
+		}
+		else
+		{
+			$target = new IteratorIterator(new DirectoryIterator($this->_paths['target']));
+		}
 
 		/* handle target */
 
@@ -200,13 +143,9 @@ class Tocgen
 			{
 				$extension = pathinfo($file, PATHINFO_EXTENSION);
 
-				/* check extension */
+				/* extension and exclude */
 
-				if (!is_array($this->_config['extensions']))
-				{
-					$output .= $this->_writeToc($file);
-				}
-				else if(in_array($extension, $this->_config['extensions']))
+				if(in_array($extension, $this->_config['extensions']) && !in_array($file, $this->_config['exclude']))
 				{
 					$output .= $this->_writeToc($file);
 				}
@@ -229,9 +168,9 @@ class Tocgen
 	}
 
 	/**
-	 * writeToc
+	 * write table of contents
 	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 *
 	 * @param string $path
 	 *
@@ -309,9 +248,9 @@ class Tocgen
 	}
 
 	/**
-	 * parseContents
+	 * parse contents
 	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 *
 	 * @param string $path
 	 *
@@ -348,9 +287,9 @@ class Tocgen
 	}
 
 	/**
-	 * parseSections
+	 * parse sections
 	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 *
 	 * @param string $contents
 	 *
@@ -424,7 +363,7 @@ class Tocgen
 
 					foreach ($rankExplode as $rankKey => $rankValue)
 					{
-						if (is_numeric($rankValue) && $rankKey !== 0)
+						if (is_numeric($rankValue) && $rankKey > 0)
 						{
 							$output['tocNew'] .= $this->_config['toc']['indent'];
 						}
@@ -443,7 +382,7 @@ class Tocgen
 	/**
 	 * lint exit
 	 *
-	 * @since 3.0.1
+	 * @since 4.0.0
 	 *
 	 * @param string $status
 	 */
@@ -459,7 +398,7 @@ class Tocgen
 	/**
 	 * console
 	 *
-	 * @since 3.0.0
+	 * @since 4.0.0
 	 *
 	 * @param string $message
 	 * @param string $mode

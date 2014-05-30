@@ -218,4 +218,4 @@ Task <code>toclint</code> returns <code>exit</code> on errors and works perfect 
 Troubleshooting
 ---------------
 
-Keep in mind that <code>eol</code> inside your <code>.tocgen</code> file equals your IDE's setup. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
+Keep in mind that <code>EOL</code> inside your <code>.tocgen</code> file equals your IDE's setup and operation system. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
