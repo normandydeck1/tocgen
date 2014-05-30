@@ -10,6 +10,6 @@
 	},
 	"bin":
 	[
-		"tocgen.php"
+		"tocgen.sh"
 	]
 }
