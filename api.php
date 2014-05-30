@@ -10,8 +10,8 @@ include_once($currentDirectory . '/tocgen.php');
 
 $target = $_POST[1];
 $config = $_POST[2];
-$targetFile = $currentDirectory . '/temp/' . sha1($target) . '.tmp';
-$configFile = $currentDirectory . '/temp/' . sha1($config) . '.tmp';
+$targetFile = $currentDirectory . '/tmp/' . sha1($target) . '.tmp';
+$configFile = $currentDirectory . '/tmp/' . sha1($config) . '.tmp';
 $argv = array(
 	1 => $targetFile,
 	2 => $configFile
@@ -33,5 +33,5 @@ echo file_get_contents($targetFile);
 
 /* unlink files */
 
-array_map('unlink', glob($currentDirectory . '/temp/*.tmp'));
+array_map('unlink', glob($currentDirectory . '/tmp/*.tmp'));
 ?>
