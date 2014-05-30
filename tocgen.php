@@ -129,20 +129,37 @@ class Tocgen
 	public function process()
 	{
 		$output = PHP_EOL . $this->_console($this->_wording['tocgen'], 'info') . PHP_EOL;
-		if ($this->_options['recursive'] === true)
+
+		/* handle file */
+
+		if (is_file($this->_paths['target']))
 		{
-			$target = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->_paths['target']));
-		}
-		else
-		{
-			$target = new IteratorIterator(new DirectoryIterator($this->_paths['target']));
+			$file = new SplFileObject($this->_paths['target']);
+
+			/* extension and exclude */
+
+			if(in_array($file->getExtension(), $this->_config['extensions']) && !in_array($file, $this->_config['exclude']))
+			{
+				$output .= $this->_writeToc($file->getPathname());
+			}
 		}
 
-		/* handle target */
+		/* handle directory */
 
-		if (is_object($target))
+		else if (is_dir($this->_paths['target']))
 		{
-			foreach ($target as $file)
+			if ($this->_options['recursive'] === true)
+			{
+				$directory = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($this->_paths['target']));
+			}
+			else
+			{
+				$directory = new DirectoryIterator($this->_paths['target']);
+			}
+
+			/* process directory */
+
+			foreach ($directory as $file)
 			{
 				/* extension and exclude */
 
