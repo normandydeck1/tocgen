@@ -97,7 +97,7 @@ class Tocgen
 
 		if (is_array($config))
 		{
-			$this->_config = array_unique(array_merge($config, $this->_config));
+			$this->_config = array_replace_recursive($this->_config, $config);
 		}
 
 		/* override options */

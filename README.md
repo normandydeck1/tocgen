@@ -133,7 +133,7 @@ Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> an
 }
 </pre>
 
-Section pattern to handle multiple lines:
+Pattern to handle sections with multiple lines:
 
 <pre>
 "section":
@@ -219,3 +219,13 @@ Troubleshooting
 ---------------
 
 Keep in mind that <code>EOL</code> inside your <code>.tocgen</code> file equals your IDE's setup and operation system. Otherwise Tocgen fails to detect existing table of contents and therefore generates a fresh one.
+
+
+Changelog
+---------
+
+**4.0.0**
+
+- Replaced method <code>_scanTarget</code> with native directory iterator
+- Introduced vendor/bin/tocgen.sh that redirects to the <code>vendor/redaxmedia/tocgen/cli.php</code> file
+- Recursively replace parts of the default config with your <code>.tocgen</code> file
