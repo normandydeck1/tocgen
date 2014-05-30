@@ -28,7 +28,7 @@ Config from <code>.tocgen</code> file.
 CLI
 ---
 
-Run <code>sh vendor/bin/tocgen.sh {path} {config} {options}</code> from console. This bash is a shortcut that redirects to the <code>cli.php</code> file.
+Run <code>sh vendor/bin/tocgen.sh {path} {config} {options}</code> from console. This bash is a shortcut that redirects to <code>vendor/redaxmedia/tocgen/cli.php</code>.
 
 
 **Example:**
