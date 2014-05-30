@@ -1,14 +1,14 @@
 {
-	"eol": "\r\n",
+	"eol": "\n",
 	"toc":
 	{
 		"flag": "@tableofcontents",
 		"start": "/**",
-		"end": " */\r\n\r\n",
+		"end": " */\n\n",
 		"prefix": " * ",
-		"delimiter": " *\r\n",
+		"delimiter": " *\n",
 		"indent": "   ",
-		"head": "\r\n * @tableofcontents\r\n *\r\n",
+		"head": "\n * @tableofcontents\n *\n",
 		"foot": ""
 	},
 	"section":
@@ -17,7 +17,7 @@
 		"start": "/*",
 		"end": "*/",
 		"delimiter": ".",
-		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
+		"pattern": "/\\/\\*(.|[\n])*?\\*\\//"
 	},
 	"extensions":
 	[

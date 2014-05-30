@@ -5,7 +5,7 @@
  *
  * @since 3.0.0
  *
- * @package Redaxscript
+ * @package Tocgen
  * @category Tocgen
  * @author Henry Ruhs
  */
@@ -24,6 +24,22 @@ class Tocgen
 	);
 
 	/**
+	 * config
+	 *
+	 * @var object
+	 */
+
+	private $_config;
+
+	/**
+	 * extensions
+	 *
+	 * @var array
+	 */
+
+	protected $_extensions;
+
+	/**
 	 * exclude
 	 *
 	 * @var array
@@ -35,17 +51,9 @@ class Tocgen
 	);
 
 	/**
-	 * config
-	 *
-	 * @var object
-	 */
-
-	private $_config;
-
-	/**
 	 * wording
 	 *
-	 * @var array
+	 * @var object
 	 */
 
 	protected $_wording;
@@ -59,17 +67,9 @@ class Tocgen
 	protected $_options;
 
 	/**
-	 * extensions
-	 *
-	 * @var array
-	 */
-
-	protected $_extensions;
-
-	/**
 	 * target
 	 *
-	 * @var object
+	 * @var array
 	 */
 
 	private $_target;
@@ -118,47 +118,36 @@ class Tocgen
 
 		/* load config */
 
-		$this->_config = file_get_contents($this->_paths['config']);
-		$this->_config = json_decode($this->_config, true);
+		$contents = file_get_contents($this->_paths['config']);
+		$config = json_decode($contents, true);
 
-		/* config present */
+		/* merge config */
 
-		if (is_array($this->_config))
+		if (is_array($config))
 		{
-			/* merge exclude */
-
-			if (is_array($this->_config['exclude']))
-			{
-				$this->_config['exclude'] = array_unique(array_merge($this->_exclude, $this->_config['exclude']));
-			}
-
-			/* else fallback */
-
-			else
-			{
-				$this->_config['exclude'] = $this->_exclude;
-			}
-
-			/* overwrite options */
-
-			foreach ($this->_config['options'] as $optionKey => $optionValue)
-			{
-				if (in_array('--' . $optionKey, $argv) || in_array('-' . substr($optionKey, 0, 1), $argv))
-				{
-					$this->_config['options'][$optionKey] = true;
-				}
-			}
-
-			/* create shortcuts */
-
-			$this->_wording = $this->_config['wording'];
-			$this->_options = $this->_config['options'];
-			$this->_extensions = $this->_config['extensions'];
-
-			/* scan target */
-
-			$this->_target = $this->_scanTarget($this->_paths['target'], $this->_config['exclude']);
+			$this->_config = array_unique(array_merge($config, $this->_config));
 		}
+
+		/* override options */
+
+		foreach ($this->_config['options'] as $optionKey => $optionValue)
+		{
+			if (in_array('--' . $optionKey, $argv) || in_array('-' . substr($optionKey, 0, 1), $argv))
+			{
+				$this->_config['options'][$optionKey] = true;
+			}
+		}
+
+		/* create shortcuts */
+
+		$this->_extensions = $this->_config['extensions'];
+		$this->_exclude = $this->_config['exclude'];
+		$this->_wording = $this->_config['wording'];
+		$this->_options = $this->_config['options'];
+
+		/* scan target */
+
+		$this->_target = $this->_scanTarget($this->_paths['target'], $this->_config['exclude']);
 	}
 
 	/**
@@ -168,6 +157,7 @@ class Tocgen
 	 *
 	 * @param string $target
 	 * @param array $exclude
+	 *
 	 * @return array
 	 */
 
@@ -265,6 +255,7 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param string $path
+	 *
 	 * @return string
 	 */
 
@@ -344,6 +335,7 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param string $path
+	 *
 	 * @return array
 	 */
 
@@ -382,6 +374,7 @@ class Tocgen
 	 * @since 3.0.0
 	 *
 	 * @param string $contents
+	 *
 	 * @return array
 	 */
 
@@ -491,6 +484,7 @@ class Tocgen
 	 *
 	 * @param string $message
 	 * @param string $mode
+	 *
 	 * @return null|string
 	 */
 

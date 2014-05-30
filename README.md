@@ -97,16 +97,16 @@ Configuration are stored inside <code>.tocgen</code> file:
 
 <pre>
 {
-	"eol": "\r\n",
+	"eol": "\n",
 	"toc":
 	{
 		"flag": "@tableofcontents",
 		"start": "/**",
-		"end": " */\r\n\r\n",
+		"end": " */\n\n",
 		"prefix": " * ",
-		"delimiter": " *\r\n",
+		"delimiter": " *\n",
 		"indent": "   ",
-		"head": "\r\n * @tableofcontents\r\n *\r\n",
+		"head": "\n * @tableofcontents\n *\n",
 		"foot": ""
 	},
 	"section":
@@ -115,50 +115,7 @@ Configuration are stored inside <code>.tocgen</code> file:
 		"start": "/*",
 		"end": "*/",
 		"delimiter": ".",
-		"pattern": "/\\/\\*(.|[\\r\\n])*?\\*\\//"
-	},
-	"extensions":
-	[
-		"coffee",
-		"css",
-		"js",
-		"less",
-		"sass",
-		"scss"
-	],
-	"exclude":
-	[
-		".",
-		"..",
-		".git",
-		".svn"
-	],
-	"notes":
-	{
-		"error": "[1;31m",
-		"success": "[1;32m",
-		"warning": "[1;33m",
-		"info": "[1;36m"
-	},
-	"wording":
-	{
-		"tocgen": "Tocgen by Redaxmedia",
-		"noTarget": "File or directory not found",
-		"noSection": "No section found",
-		"noChanges": "No changes were made",
-		"duplicateRank": "Duplicate rank detected",
-		"wrongOrder": "Wrong order detected",
-		"tocUpdated": "Table of contents updated",
-		"point": ".",
-		"colon": ":",
-		"indent": "  "
-	},
-	"options":
-	{
-		"force": false,
-		"recursive": true,
-		"lint": false,
-		"quite": false
+		"pattern": "/\\/\\*(.|[\n])*?\\*\\//"
 	}
 }
 </pre>
@@ -172,7 +129,7 @@ Foot with <code>@since</code>, <code>@package</code> and <code>@author</code> an
 <pre>
 "toc":
 {
-	"foot": " *\r\n * @since 1.0.0\r\n *\r\n * @package Your Project\r\n * @author Your Name\r\n"
+	"foot": " *\n * @since 1.0.0\n *\n * @package Your Project\n * @author Your Name\n"
 }
 </pre>
 
@@ -181,7 +138,7 @@ Section pattern to handle multiple lines:
 <pre>
 "section":
 {
-	"pattern": "/\\/\\*([\\s\\S]*?)([\\r\\n])|\\*\\//"
+	"pattern": "/\\/\\*([\\s\\S]*?)([\n])|\\*\\//"
 }
 </pre>
 
@@ -195,7 +152,7 @@ How to register Tocgen inside [composer.json](https://github.com/composer/compos
 {
 	"require-dev":
 	{
-		"redaxmedia/tocgen": "3.0.2"
+		"redaxmedia/tocgen": "4.0.0"
 	}
 }
 </pre>
