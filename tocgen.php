@@ -120,6 +120,8 @@ class Tocgen
 	 * process the target
 	 *
 	 * @since 4.0.0
+	 *
+	 * @return null|string
 	 */
 
 	public function process()
@@ -162,8 +164,9 @@ class Tocgen
 
 		if ($this->_options['quite'] === false)
 		{
-			return $output;
+			$output = null;
 		}
+		return $output;
 	}
 
 	/**
