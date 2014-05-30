@@ -352,7 +352,7 @@ class Tocgen
 
 				else if (version_compare($rankNew, $rankOld, '<'))
 				{
-					$this->_lintExit(1);
+					$this->_lintExit();
 					$output['error'][] = $this->_wording['wrongOrder'] . $this->_config['wording']['colon'] . ' ' . $sectionValue;
 				}
 
@@ -390,7 +390,7 @@ class Tocgen
 	 * @param string $status
 	 */
 
-	protected function _lintExit($status = null)
+	protected function _lintExit($status = 1)
 	{
 		if ($this->_options['lint'] === true)
 		{
