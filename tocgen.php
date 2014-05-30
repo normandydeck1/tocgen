@@ -164,7 +164,7 @@ class Tocgen
 
 		/* quite option */
 
-		if ($this->_options['quite'] === false)
+		if ($this->_options['quite'] === true)
 		{
 			$output = null;
 		}
