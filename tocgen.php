@@ -443,4 +443,3 @@ class Tocgen
 		return $output;
 	}
 }
-?>
