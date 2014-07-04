@@ -3,7 +3,7 @@ Tocgen
 
 > Generate table of contents from multiple CSS and JS files.
 
-[![Dependency Status](https://www.versioneye.com/user/projects/53110552ec13753a90000477/badge.png)](https://www.versioneye.com/user/projects/53110552ec13753a90000477)
+[![Dependency Status](https://www.versioneye.com/user/projects/53b71f1d0d5bb86c2200000f/badge.svg?style=flat)](https://www.versioneye.com/user/projects/53b71f1d0d5bb86c2200000f)
 [![Latest Stable Version](https://poser.pugx.org/redaxmedia/tocgen/v/stable.png)](https://packagist.org/packages/redaxmedia/tocgen)
 [![Total Downloads](https://poser.pugx.org/redaxmedia/tocgen/downloads.png)](https://packagist.org/packages/redaxmedia/tocgen)
 [![License](https://poser.pugx.org/redaxmedia/tocgen/license.png)](https://packagist.org/packages/redaxmedia/tocgen)
