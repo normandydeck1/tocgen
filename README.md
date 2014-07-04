@@ -7,6 +7,7 @@ Tocgen
 [![Latest Stable Version](http://img.shields.io/packagist/v/redaxmedia/tocgen.svg?style=flat)](https://packagist.org/packages/redaxmedia/tocgen)
 [![Total Downloads](http://img.shields.io/packagist/dt/redaxmedia/tocgen.svg?style=flat)](https://packagist.org/packages/redaxmedia/tocgen)
 [![License](http://img.shields.io/packagist/l/redaxmedia/tocgen.svg?style=flat)](https://packagist.org/packages/redaxmedia/tocgen)
+[![Issues](http://img.shields.io/github/issues/redaxmedia/tocgen.svg?style=flat)](https://github.com/redaxmedia/tocgen/issues)
 
 
 API
