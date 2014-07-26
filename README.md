@@ -54,7 +54,7 @@ Load config from another <code>.tocgen</code> file.
 
 <code>--lint</code>, <code>-l</code> - Lint for errors (readonly)
 
-<code>--quite</code>, <code>-q</code> - Print nothing to console
+<code>--quiet</code>, <code>-q</code> - Print nothing to console
 
 
 Service

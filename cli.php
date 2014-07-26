@@ -10,4 +10,3 @@ include_once($baseDirectory . '/tocgen.php');
 
 $tocgen = new Tocgen($argv, $baseDirectory);
 echo $tocgen->process();
-?>

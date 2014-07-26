@@ -177,9 +177,9 @@ class Tocgen
 			$output .= PHP_EOL . $this->_console($this->_wording['noTarget'], 'error') . PHP_EOL;
 		}
 
-		/* quite option */
+		/* quiet option */
 
-		if ($this->_options['quite'] === true)
+		if ($this->_options['quiet'] === true)
 		{
 			$output = null;
 		}

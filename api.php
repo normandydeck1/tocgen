@@ -34,4 +34,3 @@ echo file_get_contents($targetFile);
 /* unlink files */
 
 array_map('unlink', glob($currentDirectory . '/tmp/*.tmp'));
-?>
