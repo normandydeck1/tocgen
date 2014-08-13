@@ -433,7 +433,7 @@ class Tocgen
 
 		/* linux is present */
 
-		if ($operatingSystem === 'linux')
+		if ($this->_options['colors'] || $operatingSystem === 'linux')
 		{
 			if ($message && array_key_exists($mode, $this->_config['notes']))
 			{
