@@ -61,7 +61,6 @@
 		"force": false,
 		"recursive": true,
 		"lint": false,
-		"quiet": false,
-		"colors": false
+		"quiet": false
 	}
 }
